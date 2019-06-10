@@ -3,16 +3,9 @@ package com.wd.tech.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
 import com.wd.tech.api.Api;
-import com.wd.tech.app.MyApplication;
-
+import com.wd.tech.app.StaticClass;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.SSLContext;
-
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -80,6 +73,14 @@ public class RetrofitUtil {
      */
     public void doPost(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
         Observable observable = api.doPost(url,hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+
+    /*
+     * 常用带请求头Get请求方法
+     */
+    public void doGetString(String url , Observer<ResponseBody> observer){
+        Observable observable = api.doGetHeader(StaticClass.userId,StaticClass.sessionId,url);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 

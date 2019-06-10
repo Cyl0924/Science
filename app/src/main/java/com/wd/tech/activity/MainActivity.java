@@ -12,11 +12,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.transition.Fade;
 import android.transition.Transition;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,13 +26,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.tech.R;
 import com.wd.tech.adapter.FragmentAdapter;
 import com.wd.tech.app.StaticClass;
 import com.wd.tech.base.BaseActivity;
+import com.wd.tech.bean.UserMessage;
+import com.wd.tech.contract.Contract;
 import com.wd.tech.network.NetWorkUtils;
+import com.wd.tech.presenter.Presenter;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener ,Contract.ObjectView {
+
+    Contract.PresenterInterface presenterInterface;
 
     private long exitTime = 0;
     private DrawerLayout drawerLayout;
@@ -44,7 +52,19 @@ public class MainActivity extends BaseActivity {
     private RadioButton three;
     private LinearLayout show;
     private LinearLayout gone;
-
+    //侧滑页面所有ID
+    private SimpleDraweeView CeSim;
+    private TextView CeName;
+    private TextView CeQianming;
+    private ImageView CeHuiYuan;
+    private LinearLayout CeQian;
+    private LinearLayout CeCollect;
+    private LinearLayout CeAttention;
+    private LinearLayout CeCard;
+    private LinearLayout CeNotice;
+    private LinearLayout CeJifen;
+    private LinearLayout CeTask;
+    private LinearLayout CeSetting;
     @Override
     public void onNetChanged(int netWorkState) {
         switch (netWorkState) {
@@ -87,6 +107,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+
+        presenterInterface = new Presenter<>(this);
+
         /*
          * drawerLayout：获取布局页面抽屉布局的id
          * left:获取布局页面侧滑页面的id
@@ -108,8 +131,32 @@ public class MainActivity extends BaseActivity {
         show = findViewById(R.id.CeShowID);
         gone = findViewById(R.id.CeGoneID);
 
+
+        CeSim =  findViewById(R.id.CeSim);
+        CeName =  findViewById(R.id.CeName);
+        CeQianming =  findViewById(R.id.CeQianming);
+        CeHuiYuan =  findViewById(R.id.CeHuiYuan);
+        CeQian =  findViewById(R.id.CeQian);
+
+        CeCollect =  findViewById(R.id.CeCollect);
+        CeAttention =  findViewById(R.id.CeAttention);
+        CeCard =  findViewById(R.id.CeCard);
+        CeNotice = findViewById(R.id.CeNotice);
+        CeJifen =  findViewById(R.id.CeJifen);
+        CeTask =  findViewById(R.id.CeTask);
+        CeSetting =  findViewById(R.id.CeSetting);
+
+        CeCollect.setOnClickListener(this);
+        CeAttention.setOnClickListener(this);
+        CeCard.setOnClickListener(this);
+        CeNotice.setOnClickListener(this);
+        CeJifen.setOnClickListener(this);
+        CeTask.setOnClickListener(this);
+        CeSetting.setOnClickListener(this);
+
     }
 
+    //重启Activiy判断是否登录成功
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -117,6 +164,7 @@ public class MainActivity extends BaseActivity {
             show.setVisibility(View.VISIBLE);
             gone.setVisibility(View.GONE);
         }else{
+            presenterInterface.getStringPresenter();
             show.setVisibility(View.GONE);
             gone.setVisibility(View.VISIBLE);
         }
@@ -227,4 +275,57 @@ public class MainActivity extends BaseActivity {
         getWindow().setExitTransition(transition);
     }
 
+    //侧滑页点击事件跳转
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.CeCollect:
+                Jump(CollectActivity.class);
+                break;
+            case R.id.CeAttention:
+                Jump(AttentionActivity.class);
+                break;
+            case R.id.CeCard:
+                Jump(CardActivity.class);
+                break;
+            case R.id.CeNotice:
+                Jump(NoticeActivity.class);
+                break;
+            case R.id.CeJifen:
+                Jump(JifenActivity.class);
+                break;
+            case R.id.CeTask:
+                Jump(TaskActivity.class);
+                break;
+            case R.id.CeSetting:
+                Jump(SettingActivity.class);
+                break;
+        }
+    }
+
+    //返回个人信息详情
+    @Override
+    public void returnObject(Object obj) {
+        UserMessage userMessage = (UserMessage) obj;
+        CeSim.setImageURI(userMessage.getResult().getHeadPic());
+        CeName.setText(userMessage.getResult().getNickName());
+        CeQianming.setText(userMessage.getResult().getSignature());
+    }
+
+    //跳转方法封装抽取
+    public void Jump(Class<?> pClass){
+        Intent intent = new Intent(this,pClass);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+        } else {
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenterInterface.Destory();
+        presenterInterface = null;
+    }
 }

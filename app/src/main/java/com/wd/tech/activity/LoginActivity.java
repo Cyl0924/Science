@@ -25,7 +25,6 @@ import com.wd.tech.custom.NbButton;
 import com.wd.tech.network.NetWorkUtils;
 import com.wd.tech.presenter.Presenter;
 import com.wd.tech.util.RsaCoder;
-
 import java.util.HashMap;
 
 public class LoginActivity extends BaseActivity implements Contract.LoginView{
@@ -156,6 +155,7 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
     }
 
 
+    //登录成功回调
     @Override
     public void LoginView(LoginBean loginBean) {
         if (loginBean.getMessage().equals("登录成功")){

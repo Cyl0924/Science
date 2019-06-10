@@ -56,6 +56,27 @@ public class NonetActivity extends BaseActivity {
             case 4:
                 intent = new Intent(NonetActivity.this,YindaoActivity.class);
                 break;
+            case 5:
+                intent = new Intent(NonetActivity.this,CollectActivity.class);
+                break;
+            case 6:
+                intent = new Intent(NonetActivity.this,AttentionActivity.class);
+                break;
+            case 7:
+                intent = new Intent(NonetActivity.this,CardActivity.class);
+                break;
+            case 8:
+                intent = new Intent(NonetActivity.this,NoticeActivity.class);
+                break;
+            case 9:
+                intent = new Intent(NonetActivity.this,JifenActivity.class);
+                break;
+            case 10:
+                intent = new Intent(NonetActivity.this,TaskActivity.class);
+                break;
+            case 11:
+                intent = new Intent(NonetActivity.this,SettingActivity.class);
+                break;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(NonetActivity.this).toBundle());
