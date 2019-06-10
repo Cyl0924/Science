@@ -62,6 +62,7 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
                 //WiFi网络
                 //JumpMain();
                 break;
+                //uuuuuuuuuuuuuuuuu
         }
     }
 
