@@ -1,41 +1,46 @@
 package com.wd.tech.activity;
 
+import android.animation.Animator;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.transition.Fade;
 import android.transition.Transition;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.wd.tech.R;
 import com.wd.tech.app.StaticClass;
 import com.wd.tech.base.BaseActivity;
 import com.wd.tech.bean.LoginBean;
 import com.wd.tech.contract.Contract;
+import com.wd.tech.custom.NbButton;
 import com.wd.tech.network.NetWorkUtils;
 import com.wd.tech.presenter.Presenter;
 import com.wd.tech.util.RsaCoder;
-
 import java.util.HashMap;
 
 public class LoginActivity extends BaseActivity implements Contract.LoginView{
 
     Contract.PresenterInterface presenterInterface;
 
+    private Handler handler;
+    private Animator animator;
     private EditText LoginTvPhone;
     private EditText LoginTvPwd;
     private ImageView LoginShowHide;
     private TextView ToRegister;
-    private Button ToLoginBtn;
+    private NbButton ToLoginBtn;
     private ImageView ToWechatID;
     private ImageView ToFaceID;
+    private RelativeLayout rlContent;
 
     @Override
     public void onNetChanged(int netWorkState) {
@@ -99,9 +104,12 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
         LoginShowHide = findViewById(R.id.LoginShowHide);
         ToRegister = findViewById(R.id.ToRegister);
         ToLoginBtn = findViewById(R.id.ToLoginBtn);
-
+        rlContent = findViewById(R.id.LoginRe);
         ToWechatID = findViewById(R.id.ToWechatID);
         ToFaceID = findViewById(R.id.ToFaceID);
+
+        //rlContent.getBackground().setAlpha(0);
+        handler=new Handler();
     }
 
     @Override
@@ -147,21 +155,79 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
     }
 
 
+    //登录成功回调
     @Override
     public void LoginView(LoginBean loginBean) {
         if (loginBean.getMessage().equals("登录成功")){
             StaticClass.userId = loginBean.getResult().getUserId();
             StaticClass.sessionId = loginBean.getResult().getSessionId();
             Toast.makeText(this,loginBean.getMessage(),Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
-            } else {
-                startActivity(intent);
-            }
+            ToLoginBtn.startAnim();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //跳转
+                    gotoNew();
+                }
+            },1500);
         }else{
             Toast.makeText(this,loginBean.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void gotoNew() {
+        ToLoginBtn.gotoNew();
+
+        final Intent intent=new Intent(this,MainActivity.class);
+
+        int xc=(ToLoginBtn.getLeft()+ToLoginBtn.getRight())/2;
+        int yc=(ToLoginBtn.getTop()+ToLoginBtn.getBottom())/2;
+        animator= ViewAnimationUtils.createCircularReveal(rlContent,xc,yc,0,1111);
+        animator.setDuration(300);
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+
+                    }
+                },200);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        animator.start();
+        rlContent.getBackground().setAlpha(255);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        animator.cancel();
+        rlContent.getBackground().setAlpha(0);
+        ToLoginBtn.regainBackground();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenterInterface.Destory();
+        presenterInterface = null;
+    }
 }

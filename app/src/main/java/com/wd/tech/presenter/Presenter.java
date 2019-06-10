@@ -3,8 +3,10 @@ package com.wd.tech.presenter;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.wd.tech.app.StaticClass;
 import com.wd.tech.bean.LoginBean;
 import com.wd.tech.bean.MessageBean;
+import com.wd.tech.bean.UserMessage;
 import com.wd.tech.contract.Contract;
 import com.wd.tech.model.Model;
 
@@ -53,5 +55,23 @@ public class Presenter<T> implements Contract.PresenterInterface {
                 viewInterface.LoginView(loginBean);
             }
         });
+    }
+
+    @Override
+    public void getStringPresenter() {
+        model.getStringModel(StaticClass.USERMESSAGE,  new Model.ObjectCall() {
+            @Override
+            public void returnObject(Object object) {
+                gson = new Gson();
+                UserMessage userMessage = gson.fromJson(object.toString(),UserMessage.class);
+                Contract.ObjectView objectView = (Contract.ObjectView) tt;
+                objectView.returnObject(userMessage);
+            }
+        });
+    }
+
+    @Override
+    public void Destory() {
+        model = null;
     }
 }

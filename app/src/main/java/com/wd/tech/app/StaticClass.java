@@ -19,6 +19,7 @@ public class StaticClass {
 
     public static String REGISTER = "techApi/user/v1/register";  //注册接口
     public static String LOGIN = "techApi/user/v1/login";  //登录接口
+    public static String USERMESSAGE = "techApi/user/verify/v1/getUserInfoByUserId"; //根据ID查询用户所有信息
 
 
 

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
-    android:background="@mipmap/loginbg">
+    android:background="@mipmap/loginbg"
+    android:id="@+id/LoginRe">
 
     <LinearLayout
         android:gravity="right"
@@ -101,7 +102,7 @@
             android:textColor="@android:color/white"
             android:textSize="14sp" />
         <!-- *********************************** -->
-        <Button
+        <com.wd.tech.custom.NbButton
             android:id="@+id/ToLoginBtn"
             android:layout_marginTop="@dimen/dp_150"
             android:background="@drawable/yin_btn"
