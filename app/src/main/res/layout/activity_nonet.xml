@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NonetActivity">
+
+    <ImageView
+        android:id="@+id/Yin_IMG"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_176"
+        android:src="@mipmap/network"
+        android:layout_width="@dimen/dp_174"
+        android:layout_height="@dimen/dp_174" />
+
+    <TextView
+        android:id="@+id/Yin_TV"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Yin_IMG"
+        android:layout_marginTop="@dimen/dp_50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络不可用,请检查网络连接"
+        android:textColor="#666666"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/Yin_BTN"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="连接网络"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_90"
+        android:layout_below="@id/Yin_TV"
+        android:background="@drawable/yin_btn"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_40" />
+
+</RelativeLayout>

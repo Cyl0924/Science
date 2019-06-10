@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity"
+    android:id="@+id/DrawerID">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/CoorID"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <com.wd.tech.base.NoScrollViewPager
+                android:id="@+id/MainVpID"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                
+            </com.wd.tech.base.NoScrollViewPager>
+            
+            <RadioGroup
+                android:id="@+id/MainRgID"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50">
+
+                <RadioButton
+                    android:textSize="18sp"
+                    android:text="资讯"
+                    android:id="@+id/MainRbIDone"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <RadioButton
+                    android:textSize="18sp"
+                    android:text="消息"
+                    android:id="@+id/MainRbIDtwo"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <RadioButton
+                    android:textSize="18sp"
+                    android:text="社区"
+                    android:id="@+id/MainRbIDthree"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+            </RadioGroup>
+            
+        </RelativeLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+    
+    
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/NavID"
+        android:background="@mipmap/cehua"
+        android:layout_width="@dimen/dp_280"
+        android:layout_height="match_parent"
+        android:layout_gravity="start">
+
+
+            <LinearLayout
+                android:id="@+id/CeShowID"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:src="@mipmap/nav_btn_setting_n"
+                    android:layout_width="@dimen/dp_56"
+                    android:layout_height="@dimen/dp_56" />
+
+                <TextView
+                    android:id="@+id/LoRTvID"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:textSize="14sp"
+                    android:text="登录/注册"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/CeGoneID"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>
