@@ -11,13 +11,11 @@ import android.transition.Transition;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.wd.tech.R;
 import com.wd.tech.app.StaticClass;
 import com.wd.tech.base.BaseActivity;
