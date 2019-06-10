@@ -138,7 +138,10 @@ public class RegisterActivity extends BaseActivity implements Contract.ViewInter
         }
     }
 
-
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenterInterface.Destory();
+        presenterInterface = null;
+    }
 }

@@ -22,6 +22,7 @@ public interface Contract {
     public interface PresenterInterface{
         public void RegisterPresenter(HashMap<String,Object> hashMap);
         public void LoginPresenter(HashMap<String,Object> hashMap);
+        public void Destory();
     }
 
     public interface ViewInterface{

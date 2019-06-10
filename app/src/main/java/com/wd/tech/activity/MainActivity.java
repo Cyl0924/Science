@@ -17,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -41,12 +42,14 @@ public class MainActivity extends BaseActivity {
     private RadioButton one;
     private RadioButton two;
     private RadioButton three;
+    private LinearLayout show;
+    private LinearLayout gone;
 
     @Override
     public void onNetChanged(int netWorkState) {
         switch (netWorkState) {
             case  NetWorkUtils.NETWORK_NONE:
-                Toast.makeText(MainActivity.this,"没有网络",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"没有网络",Toast.LENGTH_SHORT).show();
                     //没有网络
                     //使用Activity切换动画 如后面需求跳转Activity请根据这里的写法进行写
                     Intent intent = new Intent(MainActivity.this,NonetActivity.class);
@@ -102,10 +105,21 @@ public class MainActivity extends BaseActivity {
         one = findViewById(R.id.MainRbIDone);
         two = findViewById(R.id.MainRbIDtwo);
         three = findViewById(R.id.MainRbIDthree);
+        show = findViewById(R.id.CeShowID);
+        gone = findViewById(R.id.CeGoneID);
 
+    }
 
-
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(StaticClass.userId == 0 && StaticClass.sessionId == null){
+            show.setVisibility(View.VISIBLE);
+            gone.setVisibility(View.GONE);
+        }else{
+            show.setVisibility(View.GONE);
+            gone.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -203,7 +217,7 @@ public class MainActivity extends BaseActivity {
     }
 
     /*
-     *实现切换淡入淡出的效果动画
+     * 实现切换淡入淡出的效果动画
      * 具体三种动画请到NonetActivity具体查看Q
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

@@ -54,4 +54,9 @@ public class Presenter<T> implements Contract.PresenterInterface {
             }
         });
     }
+
+    @Override
+    public void Destory() {
+        model = null;
+    }
 }
