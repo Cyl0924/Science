@@ -227,7 +227,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainVp.setCurrentItem(1);
+
+                if (StaticClass.userId==0){
+                    drawerLayout.openDrawer(left);
+                }else {
+                    mainVp.setCurrentItem(1);
+                }
+
             }
         });
         three.setOnClickListener(new View.OnClickListener() {
