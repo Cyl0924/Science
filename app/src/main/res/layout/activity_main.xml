@@ -13,18 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <com.wd.tech.base.NoScrollViewPager
+                android:layout_weight="5"
                 android:id="@+id/MainVpID"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                
+                android:layout_height="wrap_content">
+
             </com.wd.tech.base.NoScrollViewPager>
             
             <RadioGroup
+                android:layout_weight="1"
                 android:id="@+id/MainRgID"
                 android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
@@ -61,7 +64,7 @@
 
             </RadioGroup>
             
-        </RelativeLayout>
+        </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
     
