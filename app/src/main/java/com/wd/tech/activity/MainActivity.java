@@ -244,6 +244,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        //触发一次返回键 关闭侧滑
+        if(drawerLayout.isDrawerOpen(left)){
+            drawerLayout.closeDrawer(left);
+        }
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             exit();
             return false;
@@ -328,4 +332,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         presenterInterface.Destory();
         presenterInterface = null;
     }
+
 }
