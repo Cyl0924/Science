@@ -3,11 +3,13 @@ package com.wd.tech.api;
 import java.util.HashMap;
 
 import okhttp3.ResponseBody;
+import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -34,11 +36,11 @@ public interface Api {
     @FormUrlEncoded
     public Observable<ResponseBody> doPostString(@Url String url,@Header("userId") int userId , @Header("sessionId") String sessionId , @FieldMap HashMap<String,Object> hashMap);
 
-    @POST
+    @PUT
     @FormUrlEncoded
     public Observable<ResponseBody> doPutString(@Url String url,@Header("userId") int userId , @Header("sessionId") String sessionId , @FieldMap HashMap<String,Object> hashMap);
 
-    @POST
+    @DELETE
     @FormUrlEncoded
     public Observable<ResponseBody> doDeleteString(@Url String url,@Header("userId") int userId , @Header("sessionId") String sessionId , @FieldMap HashMap<String,Object> hashMap);
 

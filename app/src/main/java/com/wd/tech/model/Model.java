@@ -21,6 +21,7 @@ import rx.Observer;
 public class Model implements Contract.ModelInterface {
 
     ObjectCall call;
+    ObjectBack back;
 
     //注册方法
     @Override
@@ -95,6 +96,7 @@ public class Model implements Contract.ModelInterface {
             public void onNext(ResponseBody responseBody) {
                 try {
                     String json = responseBody.string();
+                    Log.e("tag",json);
                     objectCall.returnObject(json);
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -23,7 +23,6 @@ public interface Contract {
         public void PutModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void DeleteModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
 
-
     }
 
     public interface PresenterInterface{
@@ -44,5 +43,7 @@ public interface Contract {
     public interface ObjectView{
         public void returnObject(Object obj);
     }
+
+
 
 }
