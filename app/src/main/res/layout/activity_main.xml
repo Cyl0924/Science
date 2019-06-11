@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.MainActivity"
     android:id="@+id/DrawerID">
 
@@ -115,6 +116,7 @@
                         android:orientation="horizontal">
 
                         <com.facebook.drawee.view.SimpleDraweeView
+                            fresco:failureImage="@mipmap/placeholder"
                             android:id="@+id/CeSim"
                             android:layout_width="@dimen/dp_56"
                             android:layout_height="@dimen/dp_58" />
