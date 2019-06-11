@@ -17,14 +17,16 @@ public interface Contract {
     public interface ModelInterface{
         public void RegisterModel(HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void LoginModel(HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
-        public void getStringModel(String url, Model.ObjectCall objectCall);
+        public void PostModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
+        public void GetModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
+        public void PutModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
+        public void DeleteModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
+
     }
 
     public interface PresenterInterface{
         public void RegisterPresenter(HashMap<String,Object> hashMap);
         public void LoginPresenter(HashMap<String,Object> hashMap);
-        public void getStringPresenter();
-        public void Destory();
     }
 
     public interface ViewInterface{
@@ -33,10 +35,6 @@ public interface Contract {
 
     public interface LoginView{
         public void LoginView(LoginBean loginBean);
-    }
-
-    public interface ObjectView{
-        public void returnObject(Object obj);
     }
 
 }

@@ -3,9 +3,19 @@ package com.wd.tech.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
+import com.wd.tech.Immerse.StatusBarUtil;
 import com.wd.tech.api.Api;
+import com.wd.tech.app.MyApplication;
 import com.wd.tech.app.StaticClass;
+import com.wd.tech.contract.Contract;
+
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.SSLContext;
+
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -71,16 +81,25 @@ public class RetrofitUtil {
     /*
      * 常用不带请求头 以String类型参数入参的请求方法
      */
+
+    public void doGet(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doGet(url,hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
     public void doPost(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
         Observable observable = api.doPost(url,hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
-
-    /*
-     * 常用带请求头Get请求方法
-     */
-    public void doGetString(String url , Observer<ResponseBody> observer){
-        Observable observable = api.doGetHeader(StaticClass.userId,StaticClass.sessionId,url);
+    public void doPostString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doPostString(url,StaticClass.userId,StaticClass.sessionId, hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+    public void doPutString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doPutString(url,StaticClass.userId,StaticClass.sessionId, hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+    public void doDeleteString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doDeleteString(url,StaticClass.userId,StaticClass.sessionId, hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 
