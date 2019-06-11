@@ -78,6 +78,32 @@ public class Model implements Contract.ModelInterface {
     }
 
     @Override
+    public void getStringModel(String url, final ObjectCall objectCall) {
+        this.call = objectCall;
+        RetrofitUtil.getUtil().doGetString(url, new Observer<ResponseBody>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(ResponseBody responseBody) {
+                try {
+                    String json = responseBody.string();
+                    objectCall.returnObject(json);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
     public void PostModel(String url,HashMap<String, Object> hashMap, final ObjectCall objectCall) {
         this.call = objectCall;
         RetrofitUtil.getUtil().doPost(url, hashMap, new Observer<ResponseBody>() {
@@ -189,6 +215,10 @@ public class Model implements Contract.ModelInterface {
 
     public interface ObjectCall{
         public void returnObject(Object object);
+    }
+
+    public interface ObjectBack{
+        public void returnBack(Object object);
     }
 
 }

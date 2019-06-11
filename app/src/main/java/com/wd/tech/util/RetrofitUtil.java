@@ -86,18 +86,27 @@ public class RetrofitUtil {
         Observable observable = api.doGet(url,hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
+
+    public void doGetString(String url, Observer<ResponseBody> observer){
+        Observable observable = api.doGetString(url,StaticClass.userId,StaticClass.sessionId);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+
     public void doPost(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
         Observable observable = api.doPost(url,hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
+
     public void doPostString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
         Observable observable = api.doPostString(url,StaticClass.userId,StaticClass.sessionId, hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
+
     public void doPutString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
         Observable observable = api.doPutString(url,StaticClass.userId,StaticClass.sessionId, hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
+
     public void doDeleteString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
         Observable observable = api.doDeleteString(url,StaticClass.userId,StaticClass.sessionId, hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);

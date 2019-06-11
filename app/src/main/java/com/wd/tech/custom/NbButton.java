@@ -148,7 +148,6 @@ public class NbButton extends Button {
     @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
-
         if (isMorphing==true){
             final RectF rectF=new RectF(getWidth()*5/12,getHeight()/7,getWidth()*7/12,getHeight()-getHeight()/7);
             canvas.drawArc(rectF,startAngle,270,false,paint);

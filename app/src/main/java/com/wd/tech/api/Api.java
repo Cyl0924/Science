@@ -23,6 +23,9 @@ public interface Api {
     @GET
     public Observable<ResponseBody> doGet(@Url String url , @QueryMap HashMap<String,Object> hashMap);
 
+    @GET
+    public Observable<ResponseBody> doGetString(@Url String url,@Header("userId") int userId , @Header("sessionId") String sessionId);
+
     @POST
     @FormUrlEncoded
     public Observable<ResponseBody> doPost(@Url String url , @FieldMap HashMap<String,Object> hashMap);
