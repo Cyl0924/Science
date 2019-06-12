@@ -112,6 +112,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             show.setVisibility(View.VISIBLE);
             gone.setVisibility(View.GONE);
         }else{
+            presenterInterface.getStringPresenter();
             show.setVisibility(View.GONE);
             gone.setVisibility(View.VISIBLE);
         }
