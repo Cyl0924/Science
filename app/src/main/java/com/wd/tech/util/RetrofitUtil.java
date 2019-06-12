@@ -3,6 +3,8 @@ package com.wd.tech.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
+
 import com.wd.tech.api.Api;
 import com.wd.tech.app.StaticClass;
 import java.util.HashMap;
@@ -99,6 +101,7 @@ public class RetrofitUtil {
 
     public void doGetString(String url, Observer<ResponseBody> observer){
         Observable observable = api.doGetString(url,StaticClass.userId,StaticClass.sessionId);
+        Log.e("tag",StaticClass.userId+"---------------------"+StaticClass.sessionId);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 

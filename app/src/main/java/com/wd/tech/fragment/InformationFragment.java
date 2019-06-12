@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.stx.xhb.xbanner.XBanner;
 import com.wd.tech.R;
+import com.wd.tech.activity.InformationDetailsActivity;
 import com.wd.tech.activity.SearchActivity;
 import com.wd.tech.activity.WebActivity;
 import com.wd.tech.adapter.RecommendAdapter;
@@ -132,7 +133,7 @@ public class InformationFragment extends Fragment  implements  Contract.BannerVi
         LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        RecommendAdapter adapter=new RecommendAdapter(getActivity(),bean.getResult());
+        RecommendAdapter adapter=new RecommendAdapter(getActivity(),bean.getResult(),this);
         recyclerView.setAdapter(adapter);
     }
       //资讯广告的返回
@@ -141,5 +142,10 @@ public class InformationFragment extends Fragment  implements  Contract.BannerVi
 //        AdvertisingBean bean= (AdvertisingBean) obj;
 //        this.advertisingBean=bean;
     }
-
+      //跳转详情
+    public void toXiang(int id) {
+        Intent intent=new Intent(getActivity(),InformationDetailsActivity.class);
+        intent.putExtra("id",id);
+        startActivity(intent);
+    }
 }

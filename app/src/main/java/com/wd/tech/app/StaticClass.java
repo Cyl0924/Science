@@ -33,6 +33,7 @@ public class StaticClass {
     public  static String FindByTitle = "techApi/information/v1/findInformationByTitle";//根据标题模糊查询
     public  static String FindBySource = "techApi/information/v1/findInformationBySource";//根据作者名字模糊查询
     public  static String  Advertising="techApi/information/v1/findInfoAdvertising";//资讯广告
+    public  static String  InformationDetails="techApi/information/v1/findInformationDetails";//资讯详情
 
 
 

@@ -44,6 +44,8 @@ public interface Contract {
         //资讯广告
         public void  Advertising();
         public void Destory();
+        //资讯详情展示
+        public void  InformationDetails(HashMap<String,Object> hashMap);
     }
 
     public interface ViewInterface{
@@ -78,5 +80,8 @@ public interface Contract {
     public interface SearchView{
         public void findInformationByTitle(Object obj);
         public void findInformationBySource(Object obj);
+    }
+    public interface InformationView{
+        public void Information(Object obj);
     }
 }

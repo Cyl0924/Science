@@ -12,6 +12,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.tech.R;
 import com.wd.tech.bean.AdvertisingBean;
 import com.wd.tech.bean.RecommendBean;
+import com.wd.tech.fragment.InformationFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,9 +25,11 @@ public class RecommendAdapter extends RecyclerView.Adapter {
     Context context;
     List<RecommendBean.ResultBean> mlist;
     int type=1;
-    public RecommendAdapter(Context context, List<RecommendBean.ResultBean> list) {
+    InformationFragment fragment;
+    public RecommendAdapter(Context context, List<RecommendBean.ResultBean> list, InformationFragment fragment) {
         this.context=context;
         this.mlist=list;
+        this.fragment=fragment;
     }
 
     @Override
@@ -49,7 +52,7 @@ public class RecommendAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         if(type==1){
             ((Holder_1)viewHolder).recommend_img.setImageURI(mlist.get(i).getThumbnail());
             ((Holder_1)viewHolder).recommend_source.setText(mlist.get(i).getSource());
@@ -59,6 +62,12 @@ public class RecommendAdapter extends RecyclerView.Adapter {
             Date date=new Date(time);
             SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
             ((Holder_1)viewHolder).recommend_time.setText(format.format(date));
+            ((Holder_1)viewHolder).itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragment.toXiang(mlist.get(i).getId());
+                }
+            });
         }else
         {
 //             ((Holder_2)viewHolder).Advertising_tv.setText(result.getTitle());
