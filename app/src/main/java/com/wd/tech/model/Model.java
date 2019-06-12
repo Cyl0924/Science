@@ -22,7 +22,6 @@ public class Model implements Contract.ModelInterface {
 
     ObjectCall call;
     ObjectBack back;
-
     //注册方法
     @Override
     public void RegisterModel(HashMap<String, Object> hashMap, final ObjectCall objectCall) {
@@ -81,7 +80,7 @@ public class Model implements Contract.ModelInterface {
     @Override
     public void getStringModel(String url, final ObjectCall objectCall) {
         this.call = objectCall;
-        RetrofitUtil.getUtil().doGetString(url, new Observer<ResponseBody>() {
+        RetrofitUtil.getUtil().doGetString(url , new Observer<ResponseBody>() {
             @Override
             public void onCompleted() {
 
@@ -105,7 +104,33 @@ public class Model implements Contract.ModelInterface {
         });
     }
 
-    @Override
+    public void getUserModel(String url,HashMap<String,Object> hashMap, final ObjectCall objectCall) {
+        this.call = objectCall;
+          RetrofitUtil.getUtil().doGetHash(url, hashMap, new Observer<ResponseBody>() {
+              @Override
+              public void onCompleted() {
+
+              }
+
+              @Override
+              public void onError(Throwable e) {
+
+              }
+
+              @Override
+              public void onNext(ResponseBody body) {
+                  try {
+                      String  json = body.string();
+                      Log.e("tag",json+"----------------------- ");
+                      objectCall.returnObject(json);
+                  } catch (IOException e) {
+                      e.printStackTrace();
+                  }
+
+              }
+          });
+    }
+	 @Override
     public void PostModel(String url,HashMap<String, Object> hashMap, final ObjectCall objectCall) {
         this.call = objectCall;
         RetrofitUtil.getUtil().doPost(url, hashMap, new Observer<ResponseBody>() {
@@ -241,7 +266,6 @@ public class Model implements Contract.ModelInterface {
      * CallBack 为避免对象引用错误关系 代码复用性高 统一采用返回值为Object到 Presenter进行强转返回View层
      */
 
-
     public interface ObjectCall{
         public void returnObject(Object object);
     }
@@ -251,3 +275,4 @@ public class Model implements Contract.ModelInterface {
     }
 
 }
+

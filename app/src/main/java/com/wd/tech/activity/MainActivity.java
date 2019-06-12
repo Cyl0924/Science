@@ -97,12 +97,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     public int intiLayout() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // 设置contentFeature,可使用切换动画
-            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-              //init_explode();// 分解
-            //  init_Slide();//滑动进入
-              init_fade();//淡入淡出
-        }
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        //init_explode();// 分解
+        //  init_Slide();//滑动进入
+        init_fade();//淡入淡出
+    }
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (StaticClass.userId == 0 && StaticClass.sessionId == null){
+            show.setVisibility(View.VISIBLE);
+            gone.setVisibility(View.GONE);
+        }else{
+            show.setVisibility(View.GONE);
+            gone.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -156,24 +168,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
     }
 
-    //重启Activiy判断是否登录成功
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        if(StaticClass.userId == 0 && StaticClass.sessionId == null){
-            show.setVisibility(View.VISIBLE);
-            gone.setVisibility(View.GONE);
-        }else{
-            presenterInterface.getStringPresenter();
-            show.setVisibility(View.GONE);
-            gone.setVisibility(View.VISIBLE);
-        }
-    }
-
     @Override
     public void initData() {
 
-        //关联RadioGroup和ViewPager
+         //关联RadioGroup和ViewPager
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         mainVp.setAdapter(adapter);
 
@@ -227,7 +225,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainVp.setCurrentItem(1);
+
+                if (StaticClass.userId==0){
+                    drawerLayout.openDrawer(left);
+                }else {
+                    mainVp.setCurrentItem(1);
+                }
+
             }
         });
         three.setOnClickListener(new View.OnClickListener() {

@@ -4,11 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.wd.tech.R;
@@ -26,6 +27,8 @@ public class MessageFragment extends Fragment {
     private ArrayList fraglist;
     private ViewPager massagepager;
     private RadioGroup massagegroup;
+    private RadioButton massagebutton;
+    private RadioButton callerbutton;
     /*
      *  第二个消息页面的Fragment请根据对应的展示数据进行操作
      */
@@ -36,12 +39,14 @@ public class MessageFragment extends Fragment {
         View view = View.inflate(getActivity(), R.layout.fragment_message,null);
         massagepager = view.findViewById(R.id.massagepager);
         massagegroup = view.findViewById(R.id.massagegroup);
+        massagebutton = view.findViewById(R.id.massagebutton);
+        callerbutton = view.findViewById(R.id.callerbutton);
         fraglist = new ArrayList();
         fraglist.add(new CallerFrag());
         fraglist.add(new MassageFrag());
 
         massagegroup.check(massagegroup.getChildAt(0).getId());
-        massagepager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
+        massagepager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
                 return (Fragment) fraglist.get(i);
@@ -68,6 +73,19 @@ public class MessageFragment extends Fragment {
             public void onPageScrollStateChanged(int i) {
 
 
+            }
+        });
+
+        massagebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                massagepager.setCurrentItem(0);
+            }
+        });
+        callerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                massagepager.setCurrentItem(1);
             }
         });
         return view;

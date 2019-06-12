@@ -20,11 +20,13 @@ public interface Contract {
         public void RegisterModel(HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void LoginModel(HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void getStringModel(String url, Model.ObjectCall objectCall);
+        public void getUserModel(String url, HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void PostModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void GetModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void PutModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void DeleteModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void getStringUrl(String url, HashMap<String,Object> hashMap ,Model.ObjectBack objectBack);
+
     }
 
     public interface PresenterInterface{
@@ -34,6 +36,13 @@ public interface Contract {
         public void putString(HashMap<String,Object> hashMap);
         public void getStringUrl(String url);
         public void getStringUrls(String url , HashMap<String,Object> hashMap);
+        public void   bannerShow();
+        public void  RecommendList(HashMap<String,Object> hashMap);
+        public void  findInformationByTitle(HashMap<String,Object> hashMap);
+        //根据作者名字模糊查询
+        public void findInformationBySource(HashMap<String,Object> hashMap);
+        //资讯广告
+        public void  Advertising();
         public void Destory();
     }
 
@@ -60,5 +69,14 @@ public interface Contract {
     public interface UsrtJifenMingXi{
         public void returnMingXi(JifenBeanMingXi jifenBeanMingXi);
     }
-
+    public interface BannerView{
+        public void  Ban(Object obj);
+        public void  RecommendList(Object obj);
+        //广告
+        public void  Advertising(Object obj);
+    }
+    public interface SearchView{
+        public void findInformationByTitle(Object obj);
+        public void findInformationBySource(Object obj);
+    }
 }

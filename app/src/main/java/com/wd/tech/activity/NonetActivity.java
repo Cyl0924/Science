@@ -137,12 +137,12 @@ public class NonetActivity extends BaseActivity {
     @Override
     public void initData() {
         yinbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
-                    startActivity(intent);
-                }
-         });
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+                startActivity(intent);
+            }
+        });
     }
 
     //切换的动画具体使用看53  54  55 行调用

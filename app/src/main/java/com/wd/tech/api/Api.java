@@ -31,6 +31,9 @@ public interface Api {
     @GET
     public Observable<ResponseBody> doGetStringMap(@Url String url,@Header("userId") int userId , @Header("sessionId") String sessionId, @QueryMap HashMap<String,Object> hashMap);
 
+    @GET
+    public Observable<ResponseBody> doGetStrings(@Url String url,@Header("userId") int userId , @Header("sessionId") String sessionId,@QueryMap HashMap<String,Object> hashMap);
+
     @POST
     @FormUrlEncoded
     public Observable<ResponseBody> doPost(@Url String url , @FieldMap HashMap<String,Object> hashMap);
@@ -46,9 +49,5 @@ public interface Api {
     @DELETE
     @FormUrlEncoded
     public Observable<ResponseBody> doDeleteString(@Url String url,@Header("userId") int userId , @Header("sessionId") String sessionId , @FieldMap HashMap<String,Object> hashMap);
-
-
-
-
 
 }

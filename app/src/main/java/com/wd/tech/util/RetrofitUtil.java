@@ -3,19 +3,9 @@ package com.wd.tech.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
-import com.wd.tech.Immerse.StatusBarUtil;
 import com.wd.tech.api.Api;
-import com.wd.tech.app.MyApplication;
 import com.wd.tech.app.StaticClass;
-import com.wd.tech.contract.Contract;
-
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.SSLContext;
-
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -24,6 +14,12 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+/**
+ * @Author：Chen
+ * @E-mail： 1850915912@qq.com
+ * @Date：2019/3/15 11:29
+ * @Description：描述信息
+ */
 /**
  * @Author：Chen
  * @E-mail： 1850915912@qq.com
@@ -81,7 +77,21 @@ public class RetrofitUtil {
     /*
      * 常用不带请求头 以String类型参数入参的请求方法
      */
+    /*
+     * 常用不带请求头 以String类型参数入参的请求方法
+     */
+    public void doPost(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doPost(url,hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
 
+    /*
+     * 常用带userId,参数Get请求方法
+     */
+    public void doGetHash(String url,HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doGetStrings(url,StaticClass.userId,StaticClass.sessionId,hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
     public void doGet(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
         Observable observable = api.doGet(url,hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
@@ -92,10 +102,6 @@ public class RetrofitUtil {
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 
-    public void doPost(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
-        Observable observable = api.doPost(url,hashMap);
-        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
-    }
 
     public void doPostString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
         Observable observable = api.doPostString(url,StaticClass.userId,StaticClass.sessionId, hashMap);

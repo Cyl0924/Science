@@ -1,5 +1,9 @@
 package com.wd.tech.app;
 
+import android.widget.Button;
+
+import java.util.List;
+
 /**
  * @Author：Chen
  * @E-mail： 1850915912@qq.com
@@ -23,6 +27,13 @@ public class StaticClass {
     public static String SINGATURE = "techApi/user/verify/v1/modifySignature";  //修改用户签名
     public static String UserJIFEN = "techApi/user/verify/v1/findUserIntegral"; //查询用户积分
     public static String UserJIFENMINGXI = "techApi/user/verify/v1/findUserIntegralRecord"; //查询用户积分明细
+    public static String Banner="techApi/information/v1/bannerShow";//banner展示列表
+    public static String AllInfoPlate="techApi/information/v1/findAllInfoPlate";//所有板块查询
+    public static String RecommendList="techApi/information/v1/infoRecommendList" ;//资讯推荐展示列表(包含单独板块列表展示)
+    public  static String FindByTitle = "techApi/information/v1/findInformationByTitle";//根据标题模糊查询
+    public  static String FindBySource = "techApi/information/v1/findInformationBySource";//根据作者名字模糊查询
+    public  static String  Advertising="techApi/information/v1/findInfoAdvertising";//资讯广告
+
 
 
 
@@ -74,5 +85,4 @@ public class StaticClass {
      */
     public static int userId = 0;
     public static String sessionId = null;
-
 }

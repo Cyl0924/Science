@@ -64,6 +64,10 @@
         <activity android:name=".activity.FaceActivity"
             android:launchMode="singleTask"></activity>
 
+        <activity android:name=".activity.WebActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".activity.SearchActivity"
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>

@@ -60,5 +60,8 @@ dependencies {
     implementation 'org.greenrobot:greendao-generator:3.1.0'
     implementation 'com.android.support:multidex:1.0.1'
     // ***************************************************** 依赖请在后面进行添加
-
+    //XBanner
+    implementation 'com.github.xiaohaibin:XBanner:1.6.1'
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 }
