@@ -1,5 +1,9 @@
 package com.wd.tech.app;
 
+import android.widget.Button;
+
+import java.util.List;
+
 /**
  * @Author：Chen
  * @E-mail： 1850915912@qq.com
@@ -19,11 +23,13 @@ public class StaticClass {
     public static String REGISTER = "techApi/user/v1/register";  //注册接口
     public static String LOGIN = "techApi/user/v1/login";  //登录接口
     public static String USERMESSAGE = "techApi/user/verify/v1/getUserInfoByUserId"; //根据ID查询用户所有信息
+    public static String Banner="techApi/information/v1/bannerShow";//banner展示列表
+    public static String AllInfoPlate="techApi/information/v1/findAllInfoPlate";//所有板块查询
+    public static String RecommendList="techApi/information/v1/infoRecommendList" ;//资讯推荐展示列表(包含单独板块列表展示)
+    public  static String FindByTitle = "techApi/information/v1/findInformationByTitle";//根据标题模糊查询
+    public  static String FindBySource = "techApi/information/v1/findInformationBySource";//根据作者名字模糊查询
+    public  static String  Advertising="techApi/information/v1/findInfoAdvertising";//资讯广告
 
-    /*
-     * 下面是全局静态常量 userID sessionId 可以直接类名点进行调用 切勿进行值的覆盖或者更改 指空等操作
-     */
     public static int userId = 0;
     public static String sessionId = null;
-
 }

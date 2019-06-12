@@ -36,7 +36,6 @@ public class RetrofitUtil {
         retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//添加Rx转换器
                 .baseUrl("https://mobile.bwstudent.com/") //baseurl
-         //       .client(client)
                 .build();
 
         api = retrofit.create(Api.class);
@@ -83,5 +82,11 @@ public class RetrofitUtil {
         Observable observable = api.doGetHeader(StaticClass.userId,StaticClass.sessionId,url);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
-
+    /*
+     * 常用带userId,参数Get请求方法
+     */
+    public void doGetHash(String url,HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doGetString(StaticClass.userId,StaticClass.sessionId,url,hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
 }

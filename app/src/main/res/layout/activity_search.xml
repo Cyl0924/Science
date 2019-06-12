@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SearchActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_50">
+        <RelativeLayout
+            android:layout_width="@dimen/dp_285"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:paddingLeft="@dimen/dp_50"
+                android:id="@+id/search_etn"
+                android:hint="搜索文章"
+                android:background="@drawable/radius"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_width="@dimen/dp_285"
+                android:layout_height="@dimen/dp_35" />
+              <ImageView
+                  android:id="@+id/serch_id"
+                  android:layout_marginTop="@dimen/dp_7"
+                  android:layout_width="@dimen/dp_24"
+                  android:layout_height="@dimen/dp_24"
+                  android:layout_marginLeft="@dimen/dp_30"
+                  android:src="@mipmap/common_nav_btn_search_n"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/search_cancle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_18"
+            android:textColor="#666666"
+            android:layout_marginTop="@dimen/dp_2"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_20"
+            android:text="取消"/>
+    </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/ll_id"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+      <TextView
+          android:layout_marginLeft="@dimen/dp_20"
+          android:layout_marginTop="@dimen/dp_20"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="热搜词" />
+         <com.wd.tech.view.MyView
+             android:layout_marginTop="@dimen/dp_10"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:id="@+id/myView"/>
+  </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/serch_recy"/>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/search_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_marginTop="@dimen/dp_30"
+            android:src="@mipmap/error"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="@dimen/dp_150"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="没有找到相似文章"
+            android:gravity="center"
+            android:textSize="@dimen/sp_14"/>
+    </LinearLayout>
+
+</LinearLayout>

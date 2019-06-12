@@ -21,7 +21,6 @@ import rx.Observer;
 public class Model implements Contract.ModelInterface {
 
     ObjectCall call;
-
     //注册方法
     @Override
     public void RegisterModel(HashMap<String, Object> hashMap, final ObjectCall objectCall) {
@@ -103,7 +102,32 @@ public class Model implements Contract.ModelInterface {
         });
     }
 
+    public void getUserModel(String url,HashMap<String,Object> hashMap, final ObjectCall objectCall) {
+        this.call = objectCall;
+          RetrofitUtil.getUtil().doGetHash(url, hashMap, new Observer<ResponseBody>() {
+              @Override
+              public void onCompleted() {
 
+              }
+
+              @Override
+              public void onError(Throwable e) {
+
+              }
+
+              @Override
+              public void onNext(ResponseBody body) {
+                  try {
+                      String  json = body.string();
+                      Log.e("tag",json+"----------------------- ");
+                      objectCall.returnObject(json);
+                  } catch (IOException e) {
+                      e.printStackTrace();
+                  }
+
+              }
+          });
+    }
     /*
      * CallBack 为避免对象引用错误关系 代码复用性高 统一采用返回值为Object到 Presenter进行强转返回View层
      */

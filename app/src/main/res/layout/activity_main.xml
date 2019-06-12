@@ -15,51 +15,55 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            
+
             <com.wd.tech.base.NoScrollViewPager
                 android:id="@+id/MainVpID"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
+
             </com.wd.tech.base.NoScrollViewPager>
-            
+
             <RadioGroup
                 android:id="@+id/MainRgID"
-                android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_50">
+                android:layout_height="@dimen/dp_50"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
 
                 <RadioButton
-                    android:textSize="18sp"
-                    android:text="资讯"
                     android:id="@+id/MainRbIDone"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="资讯"
+                    android:textSize="18sp" />
+
                 <RadioButton
-                    android:textSize="18sp"
-                    android:text="消息"
                     android:id="@+id/MainRbIDtwo"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="消息"
+                    android:textSize="18sp" />
+
                 <RadioButton
-                    android:textSize="18sp"
-                    android:text="社区"
                     android:id="@+id/MainRbIDthree"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="社区"
+                    android:textSize="18sp" />
 
             </RadioGroup>
-            
+
         </RelativeLayout>
 
     </android.support.design.widget.CoordinatorLayout>
@@ -95,6 +99,7 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/CeGoneID"

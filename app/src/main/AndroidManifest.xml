@@ -39,20 +39,31 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".activity.CollectActivity"
+        <activity
+            android:name=".activity.CollectActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.AttentionActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.CardActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.NoticeActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.JifenActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.TaskActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.SettingActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".activity.WebActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".activity.AttentionActivity"
+        <activity android:name=".activity.SearchActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".activity.CardActivity"
-            android:launchMode="singleTask"/>
-        <activity android:name=".activity.NoticeActivity"
-            android:launchMode="singleTask"/>
-        <activity android:name=".activity.JifenActivity"
-            android:launchMode="singleTask"/>
-        <activity android:name=".activity.TaskActivity"
-            android:launchMode="singleTask"/>
-        <activity android:name=".activity.SettingActivity"
-            android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>

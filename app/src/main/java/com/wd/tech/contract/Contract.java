@@ -18,6 +18,7 @@ public interface Contract {
         public void RegisterModel(HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void LoginModel(HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void getStringModel(String url, Model.ObjectCall objectCall);
+        public void getUserModel(String url, HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
     }
 
     public interface PresenterInterface{
@@ -25,6 +26,16 @@ public interface Contract {
         public void LoginPresenter(HashMap<String,Object> hashMap);
         public void getStringPresenter();
         public void Destory();
+        //banner展示列表
+        public void   bannerShow();
+        //资讯推荐展示列表(包含单独板块列表展示)
+        public void  RecommendList(HashMap<String,Object> hashMap);
+        //根据标题模糊查询
+        public void  findInformationByTitle(HashMap<String,Object> hashMap);
+        //根据作者名字模糊查询
+        public void findInformationBySource(HashMap<String,Object> hashMap);
+        //资讯广告
+        public void  Advertising();
     }
 
     public interface ViewInterface{
@@ -38,5 +49,14 @@ public interface Contract {
     public interface ObjectView{
         public void returnObject(Object obj);
     }
-
+    public interface BannerView{
+        public void  Ban(Object obj);
+        public void  RecommendList(Object obj);
+        //广告
+        public void  Advertising(Object obj);
+    }
+    public interface SearchView{
+        public void findInformationByTitle(Object obj);
+        public void findInformationBySource(Object obj);
+    }
 }
