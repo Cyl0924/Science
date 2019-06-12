@@ -1,12 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher_round"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_80"
+        android:background="#f2f2f2"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <RadioGroup
+            android:layout_width="@dimen/dp_188"
+            android:layout_height="@dimen/dp_30"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:background="@drawable/groupshap"
+            android:orientation="horizontal"
+            android:id="@+id/massagegroup"
+            >
+
+            <RadioButton
+                android:layout_width="@dimen/dp_94"
+                android:layout_height="@dimen/dp_30"
+                android:background="@drawable/my_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="消息"
+                android:textSize="@dimen/sp_20"
+                android:id="@+id/massagebutton"/>
+
+            <RadioButton
+                android:layout_width="@dimen/dp_94"
+                android:layout_height="@dimen/dp_30"
+                android:background="@drawable/my_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="联系人"
+                android:textSize="@dimen/sp_20"
+                android:id="@+id/callerbutton"/>
+        </RadioGroup>
+
+        <ImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:src="@mipmap/community_btn_add_n"
+            android:id="@+id/add"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/massagepager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>
+
+

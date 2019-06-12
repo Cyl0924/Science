@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.MainActivity"
     android:id="@+id/DrawerID">
 
@@ -12,63 +13,62 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <com.wd.tech.base.NoScrollViewPager
+                android:layout_weight="5"
                 android:id="@+id/MainVpID"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true">
+                android:layout_height="wrap_content">
 
             </com.wd.tech.base.NoScrollViewPager>
 
             <RadioGroup
+                android:layout_weight="1"
                 android:id="@+id/MainRgID"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_50"
+                android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
-                android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50">
 
                 <RadioButton
-                    android:id="@+id/MainRbIDone"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
+                    android:textSize="18sp"
                     android:text="资讯"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/MainRbIDtwo"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:button="@null"
+                    android:id="@+id/MainRbIDone"
                     android:gravity="center"
+                    android:button="@null"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <RadioButton
+                    android:textSize="18sp"
                     android:text="消息"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/MainRbIDthree"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:button="@null"
+                    android:id="@+id/MainRbIDtwo"
                     android:gravity="center"
+                    android:button="@null"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <RadioButton
+                    android:textSize="18sp"
                     android:text="社区"
-                    android:textSize="18sp" />
+                    android:id="@+id/MainRbIDthree"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
 
             </RadioGroup>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
-    
-    
+
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/NavID"
@@ -78,408 +78,408 @@
         android:layout_gravity="start">
 
 
-            <LinearLayout
-                android:id="@+id/CeShowID"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/CeShowID"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/nav_btn_setting_n"
+                android:layout_width="@dimen/dp_56"
+                android:layout_height="@dimen/dp_56" />
+
+            <TextView
+                android:id="@+id/LoRTvID"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:textSize="14sp"
+                android:text="登录/注册"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/CeGoneID"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="@dimen/dp_280"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:src="@mipmap/nav_btn_setting_n"
-                    android:layout_width="@dimen/dp_56"
-                    android:layout_height="@dimen/dp_56" />
-
-                <TextView
-                    android:id="@+id/LoRTvID"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_58"
                     android:layout_marginLeft="@dimen/dp_12"
-                    android:textSize="14sp"
-                    android:text="登录/注册"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginTop="@dimen/dp_76"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        fresco:failureImage="@mipmap/placeholder"
+                        android:id="@+id/CeSim"
+                        android:layout_width="@dimen/dp_56"
+                        android:layout_height="@dimen/dp_58" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/CeGoneID"
-                android:visibility="gone"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="@dimen/dp_280"
+                            <TextView
+                                android:id="@+id/CeName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="JUNMSS"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/CeQianming"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/dp_10"
+                                android:text="我是最好的"
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="@dimen/dp_0"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4">
+
+                            <ImageView
+                                android:id="@+id/CeHuiYuan"
+                                android:src="@mipmap/huiyuan"
+                                android:layout_gravity="center"
+                                android:layout_width="@dimen/dp_30"
+                                android:layout_height="@dimen/dp_30" />
+
+                            <LinearLayout
+                                android:id="@+id/CeQian"
+                                android:layout_marginRight="@dimen/dp_10"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="@dimen/dp_8"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/my_icon_sign_n"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:text="签到 "
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@drawable/ce_bg"
+                    android:layout_marginTop="@dimen/dp_170"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_58"
+                        android:layout_marginTop="@dimen/dp_16"
                         android:layout_marginLeft="@dimen/dp_12"
-                        android:layout_marginTop="@dimen/dp_76"
-                        android:orientation="horizontal">
-
-                        <com.facebook.drawee.view.SimpleDraweeView
-                            android:id="@+id/CeSim"
-                            android:layout_width="@dimen/dp_56"
-                            android:layout_height="@dimen/dp_58" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/dp_10"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="6"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/CeName"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="JUNMSS"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="18sp" />
-
-                                <TextView
-                                    android:id="@+id/CeQianming"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="@dimen/dp_10"
-                                    android:text="我是最好的"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="12sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="@dimen/dp_0"
-                                android:layout_height="match_parent"
-                                android:layout_weight="4">
-
-                                <ImageView
-                                    android:id="@+id/CeHuiYuan"
-                                    android:src="@mipmap/huiyuan"
-                                    android:layout_gravity="center"
-                                    android:layout_width="@dimen/dp_30"
-                                    android:layout_height="@dimen/dp_30" />
-
-                                <LinearLayout
-                                    android:id="@+id/CeQian"
-                                    android:layout_marginRight="@dimen/dp_10"
-                                    android:orientation="vertical"
-                                    android:layout_marginLeft="@dimen/dp_8"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <ImageView
-                                        android:layout_gravity="center"
-                                        android:src="@mipmap/my_icon_sign_n"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-
-                                    <TextView
-                                        android:gravity="center"
-                                        android:text="签到 "
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:background="@drawable/ce_bg"
-                        android:layout_marginTop="@dimen/dp_170"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <LinearLayout
-                            android:layout_marginTop="@dimen/dp_16"
-                            android:layout_marginLeft="@dimen/dp_12"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/CeCollect"
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:src="@mipmap/my_icon_collect_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                                <TextView
-                                    android:text="我的收藏"
-                                    android:layout_marginLeft="@dimen/dp_10"
-                                    android:textSize="14sp"
-                                    android:layout_width="@dimen/dp_190"
-                                    android:layout_height="wrap_content" />
-
-                                <ImageView
-                                    android:layout_marginRight="@dimen/dp_20"
-                                    android:src="@mipmap/my_icon_next_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <!-- ************************ -->
-                        <LinearLayout
-                            android:layout_marginTop="@dimen/dp_30"
-                            android:layout_marginLeft="@dimen/dp_12"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/CeAttention"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20"
-                                    android:src="@mipmap/my_icon_attention_n" />
-
-                                <TextView
-                                    android:layout_width="@dimen/dp_190"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/dp_10"
-                                    android:text="我的关注"
-                                    android:textSize="14sp" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20"
-                                    android:layout_marginRight="@dimen/dp_20"
-                                    android:src="@mipmap/my_icon_next_n" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <!-- ************************ -->
-                        <LinearLayout
-                            android:layout_marginTop="@dimen/dp_30"
-                            android:layout_marginLeft="@dimen/dp_12"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/CeCard"
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:src="@mipmap/my_icon_card_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                                <TextView
-                                    android:text="我的帖子"
-                                    android:layout_marginLeft="@dimen/dp_10"
-                                    android:textSize="14sp"
-                                    android:layout_width="@dimen/dp_190"
-                                    android:layout_height="wrap_content" />
-
-                                <ImageView
-                                    android:layout_marginRight="@dimen/dp_20"
-                                    android:src="@mipmap/my_icon_next_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <!-- ************************ -->
-                        <LinearLayout
-                            android:layout_marginTop="@dimen/dp_30"
-                            android:layout_marginLeft="@dimen/dp_12"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/CeNotice"
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:src="@mipmap/my_icon_notice_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                                <TextView
-                                    android:text="我的通知"
-                                    android:layout_marginLeft="@dimen/dp_10"
-                                    android:textSize="14sp"
-                                    android:layout_width="@dimen/dp_190"
-                                    android:layout_height="wrap_content" />
-
-                                <ImageView
-                                    android:layout_marginRight="@dimen/dp_20"
-                                    android:src="@mipmap/my_icon_next_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <!-- ************************ -->
-                        <LinearLayout
-                            android:layout_marginTop="@dimen/dp_30"
-                            android:layout_marginLeft="@dimen/dp_12"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/CeJifen"
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:src="@mipmap/my_icon_notice_ni"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                                <TextView
-                                    android:layout_width="@dimen/dp_190"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/dp_10"
-                                    android:text="我的积分"
-                                    android:textSize="14sp" />
-
-                                <ImageView
-                                    android:layout_marginRight="@dimen/dp_20"
-                                    android:src="@mipmap/my_icon_next_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <!-- ************************ -->
-                        <LinearLayout
-                            android:layout_marginTop="@dimen/dp_30"
-                            android:layout_marginLeft="@dimen/dp_12"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/CeTask"
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:src="@mipmap/my_icon_task_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                                <TextView
-                                    android:text="我的任务"
-                                    android:layout_marginLeft="@dimen/dp_10"
-                                    android:textSize="14sp"
-                                    android:layout_width="@dimen/dp_190"
-                                    android:layout_height="wrap_content" />
-
-                                <ImageView
-                                    android:layout_marginRight="@dimen/dp_20"
-                                    android:src="@mipmap/my_icon_next_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <!-- ************************ -->
-                        <LinearLayout
-                            android:layout_marginTop="@dimen/dp_30"
-                            android:layout_marginLeft="@dimen/dp_12"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/CeSetting"
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:src="@mipmap/my_icon_setting_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                                <TextView
-                                    android:text="设置"
-                                    android:layout_marginLeft="@dimen/dp_10"
-                                    android:textSize="14sp"
-                                    android:layout_width="@dimen/dp_190"
-                                    android:layout_height="wrap_content" />
-
-                                <ImageView
-                                    android:layout_marginRight="@dimen/dp_20"
-                                    android:src="@mipmap/my_icon_next_n"
-                                    android:layout_width="@dimen/dp_20"
-                                    android:layout_height="@dimen/dp_20" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <!-- ************************ -->
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_alignParentBottom="true"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <TextView
-                            android:gravity="center"
-                            android:text="八维移动通信学院毕业作品"
+                        <LinearLayout
+                            android:id="@+id/CeCollect"
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp_20" />
+                            <ImageView
+                                android:src="@mipmap/my_icon_collect_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                            <TextView
+                                android:text="我的收藏"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:textSize="14sp"
+                                android:layout_width="@dimen/dp_190"
+                                android:layout_height="wrap_content" />
+
+                            <ImageView
+                                android:layout_marginRight="@dimen/dp_20"
+                                android:src="@mipmap/my_icon_next_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </RelativeLayout>
+                    <!-- ************************ -->
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/dp_30"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-            </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/CeAttention"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20"
+                                android:src="@mipmap/my_icon_attention_n" />
+
+                            <TextView
+                                android:layout_width="@dimen/dp_190"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:text="我的关注"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20"
+                                android:layout_marginRight="@dimen/dp_20"
+                                android:src="@mipmap/my_icon_next_n" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- ************************ -->
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/dp_30"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/CeCard"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:src="@mipmap/my_icon_card_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                            <TextView
+                                android:text="我的帖子"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:textSize="14sp"
+                                android:layout_width="@dimen/dp_190"
+                                android:layout_height="wrap_content" />
+
+                            <ImageView
+                                android:layout_marginRight="@dimen/dp_20"
+                                android:src="@mipmap/my_icon_next_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- ************************ -->
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/dp_30"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/CeNotice"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:src="@mipmap/my_icon_notice_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                            <TextView
+                                android:text="我的通知"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:textSize="14sp"
+                                android:layout_width="@dimen/dp_190"
+                                android:layout_height="wrap_content" />
+
+                            <ImageView
+                                android:layout_marginRight="@dimen/dp_20"
+                                android:src="@mipmap/my_icon_next_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- ************************ -->
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/dp_30"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/CeJifen"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:src="@mipmap/my_icon_notice_ni"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                            <TextView
+                                android:layout_width="@dimen/dp_190"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:text="我的积分"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:layout_marginRight="@dimen/dp_20"
+                                android:src="@mipmap/my_icon_next_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- ************************ -->
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/dp_30"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/CeTask"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:src="@mipmap/my_icon_task_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                            <TextView
+                                android:text="我的任务"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:textSize="14sp"
+                                android:layout_width="@dimen/dp_190"
+                                android:layout_height="wrap_content" />
+
+                            <ImageView
+                                android:layout_marginRight="@dimen/dp_20"
+                                android:src="@mipmap/my_icon_next_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- ************************ -->
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/dp_30"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/CeSetting"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:src="@mipmap/my_icon_setting_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                            <TextView
+                                android:text="设置"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:textSize="14sp"
+                                android:layout_width="@dimen/dp_190"
+                                android:layout_height="wrap_content" />
+
+                            <ImageView
+                                android:layout_marginRight="@dimen/dp_20"
+                                android:src="@mipmap/my_icon_next_n"
+                                android:layout_width="@dimen/dp_20"
+                                android:layout_height="@dimen/dp_20" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- ************************ -->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:gravity="center"
+                        android:text="八维移动通信学院毕业作品"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_20" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
 
     </android.support.design.widget.NavigationView>

@@ -20,6 +20,12 @@ import rx.schedulers.Schedulers;
  * @Date：2019/3/15 11:29
  * @Description：描述信息
  */
+/**
+ * @Author：Chen
+ * @E-mail： 1850915912@qq.com
+ * @Date：2019/3/15 11:29
+ * @Description：描述信息
+ */
 public class RetrofitUtil {
 
     private static RetrofitUtil util;
@@ -36,6 +42,7 @@ public class RetrofitUtil {
         retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//添加Rx转换器
                 .baseUrl("https://mobile.bwstudent.com/") //baseurl
+         //       .client(client)
                 .build();
 
         api = retrofit.create(Api.class);
@@ -70,23 +77,45 @@ public class RetrofitUtil {
     /*
      * 常用不带请求头 以String类型参数入参的请求方法
      */
+    /*
+     * 常用不带请求头 以String类型参数入参的请求方法
+     */
     public void doPost(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
         Observable observable = api.doPost(url,hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 
     /*
-     * 常用带请求头Get请求方法
-     */
-    public void doGetString(String url , Observer<ResponseBody> observer){
-        Observable observable = api.doGetHeader(StaticClass.userId,StaticClass.sessionId,url);
-        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
-    }
-    /*
      * 常用带userId,参数Get请求方法
      */
     public void doGetHash(String url,HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
-        Observable observable = api.doGetString(StaticClass.userId,StaticClass.sessionId,url,hashMap);
+        Observable observable = api.doGetStrings(url,StaticClass.userId,StaticClass.sessionId,hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
+    public void doGet(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doGet(url,hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+
+    public void doGetString(String url, Observer<ResponseBody> observer){
+        Observable observable = api.doGetString(url,StaticClass.userId,StaticClass.sessionId);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+
+
+    public void doPostString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doPostString(url,StaticClass.userId,StaticClass.sessionId, hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+
+    public void doPutString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doPutString(url,StaticClass.userId,StaticClass.sessionId, hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+
+    public void doDeleteString(String url, HashMap<String,Object> hashMap , Observer<ResponseBody> observer){
+        Observable observable = api.doDeleteString(url,StaticClass.userId,StaticClass.sessionId, hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+
 }

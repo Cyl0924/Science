@@ -19,6 +19,10 @@ public interface Contract {
         public void LoginModel(HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void getStringModel(String url, Model.ObjectCall objectCall);
         public void getUserModel(String url, HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
+		public void PostModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
+        public void GetModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
+        public void PutModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
+        public void DeleteModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
     }
 
     public interface PresenterInterface{
@@ -60,3 +64,5 @@ public interface Contract {
         public void findInformationBySource(Object obj);
     }
 }
+
+

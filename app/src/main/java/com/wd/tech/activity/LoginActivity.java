@@ -177,9 +177,7 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
 
     private void gotoNew() {
         ToLoginBtn.gotoNew();
-
         final Intent intent=new Intent(this,MainActivity.class);
-
         int xc=(ToLoginBtn.getLeft()+ToLoginBtn.getRight())/2;
         int yc=(ToLoginBtn.getTop()+ToLoginBtn.getBottom())/2;
         animator= ViewAnimationUtils.createCircularReveal(rlContent,xc,yc,0,1111);
@@ -192,7 +190,6 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
                     public void run() {
                         startActivity(intent);
                         overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-
                     }
                 },200);
             }

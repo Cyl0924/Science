@@ -6,17 +6,40 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.transition.Fade;
 import android.transition.Transition;
+import android.util.Log;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.tech.R;
 import com.wd.tech.app.StaticClass;
 import com.wd.tech.base.BaseActivity;
+import com.wd.tech.bean.UserMessage;
+import com.wd.tech.contract.Contract;
 import com.wd.tech.network.NetWorkUtils;
+import com.wd.tech.presenter.Presenter;
 
-public class SettingActivity extends BaseActivity {
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+public class SettingActivity extends BaseActivity implements Contract.ObjectView {
 
+    Contract.PresenterInterface presenterInterface;
+
+    private ImageView SettingBack;
+    private SimpleDraweeView SettingSim;
+    private TextView SettingName;
+    private TextView SettingSex;
+    private ImageView SettingQianming;
+    private TextView SettingBirthday;
+    private TextView SettingPhone;
+    private TextView SettingEmail;
+    private TextView SettingJifen;
+    private TextView SettingVIP;
+    private TextView SettingFaceID;
+    private TextView SettingOut;
 
     @Override
     public void onNetChanged(int netWorkState) {
@@ -59,11 +82,28 @@ public class SettingActivity extends BaseActivity {
     @Override
     public void initView() {
 
+        //Log.e("tag",StaticClass.userId+"------"+StaticClass.sessionId);
+
+        presenterInterface = new Presenter<>(this);
+
+        SettingBack =  findViewById(R.id.SettingBack);
+        SettingSim =  findViewById(R.id.SettingSim);
+        SettingName =  findViewById(R.id.SettingName);
+        SettingSex =  findViewById(R.id.SettingSex);
+        SettingQianming =  findViewById(R.id.SettingQianming);
+        SettingBirthday = findViewById(R.id.SettingBirthday);
+        SettingPhone =  findViewById(R.id.SettingPhone);
+        SettingEmail =  findViewById(R.id.SettingEmail);
+        SettingJifen = findViewById(R.id.SettingJifen);
+        SettingVIP =  findViewById(R.id.SettingVIP);
+        SettingFaceID =  findViewById(R.id.SettingFaceID);
+        SettingOut =  findViewById(R.id.SettingOut);
+
     }
 
     @Override
     public void initData() {
-
+        presenterInterface.getStringPresenter();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -72,4 +112,42 @@ public class SettingActivity extends BaseActivity {
         getWindow().setEnterTransition(transition);
         getWindow().setExitTransition(transition);
     }
+
+    @Override
+    public void returnObject(Object obj) {
+        UserMessage userMessage = (UserMessage) obj;
+        SettingSim.setImageURI(userMessage.getResult().getHeadPic());
+        SettingName.setText(userMessage.getResult().getNickName());
+        if (userMessage.getResult().getSex() == 1){
+            SettingSex.setText("男");
+        }else{
+            SettingSex.setText("女");
+        }
+        SettingBirthday.setText("1997-10-10");
+        SettingPhone.setText(userMessage.getResult().getPhone());
+        SettingEmail.setText(userMessage.getResult().getEmail());
+        SettingJifen.setText(userMessage.getResult().getIntegral()+"");
+        Log.e("tag",userMessage.getResult().getWhetherVip()+"");
+        if (userMessage.getResult().getWhetherVip() == 1){
+            SettingVIP.setText("是");
+        }else{
+            SettingVIP.setText("否");
+        }
+        if (userMessage.getResult().getWhetherFaceId() == 1){
+            SettingFaceID.setText("已绑定");
+        }else{
+            SettingFaceID.setText("未绑定");
+        }
+    }
+
+ /*   public static String longToDate(long lo){
+
+        Date date = new Date(lo);
+
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        return sd.format(date);
+
+    }*/
+
 }

@@ -2,7 +2,7 @@ package com.wd.tech.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.wd.tech.fragment.CommunityFragment;
 import com.wd.tech.fragment.InformationFragment;
@@ -14,7 +14,7 @@ import com.wd.tech.fragment.MessageFragment;
  * @Date：2019/3/15 11:29
  * @Description：描述信息
  */
-public class FragmentAdapter extends FragmentPagerAdapter {
+public class FragmentAdapter extends FragmentStatePagerAdapter {
 
     /*
      * Fragment + ViewPager 适配器

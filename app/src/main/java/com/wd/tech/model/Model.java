@@ -128,6 +128,109 @@ public class Model implements Contract.ModelInterface {
               }
           });
     }
+	 @Override
+    public void PostModel(String url,HashMap<String, Object> hashMap, final ObjectCall objectCall) {
+        this.call = objectCall;
+        RetrofitUtil.getUtil().doPost(url, hashMap, new Observer<ResponseBody>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(ResponseBody responseBody) {
+                try {
+                    String json = responseBody.string();
+                    objectCall.returnObject(json);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void GetModel(String url, HashMap<String, Object> hashMap, final ObjectCall objectCall) {
+        this.call = objectCall;
+        RetrofitUtil.getUtil().doGet(url, hashMap, new Observer<ResponseBody>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(ResponseBody responseBody) {
+                try {
+                    String json = responseBody.string();
+                    objectCall.returnObject(json);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void PutModel(String url, HashMap<String, Object> hashMap,final ObjectCall objectCall) {
+        this.call = objectCall;
+        RetrofitUtil.getUtil().doPutString(url, hashMap, new Observer<ResponseBody>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(ResponseBody responseBody) {
+                try {
+                    String json = responseBody.string();
+                    objectCall.returnObject(json);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void DeleteModel(String url, HashMap<String, Object> hashMap, final ObjectCall objectCall) {
+        this.call = objectCall;
+        RetrofitUtil.getUtil().doDeleteString(url, hashMap, new Observer<ResponseBody>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(ResponseBody responseBody) {
+                try {
+                    String json = responseBody.string();
+                    objectCall.returnObject(json);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
     /*
      * CallBack 为避免对象引用错误关系 代码复用性高 统一采用返回值为Object到 Presenter进行强转返回View层
      */
@@ -141,3 +244,4 @@ public class Model implements Contract.ModelInterface {
     }
 
 }
+
