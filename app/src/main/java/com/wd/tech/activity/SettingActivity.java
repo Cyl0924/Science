@@ -7,6 +7,7 @@ import android.support.annotation.RequiresApi;
 import android.transition.Fade;
 import android.transition.Transition;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,12 +22,12 @@ import com.wd.tech.contract.Contract;
 import com.wd.tech.network.NetWorkUtils;
 import com.wd.tech.presenter.Presenter;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class SettingActivity extends BaseActivity implements Contract.ObjectView {
 
     Contract.PresenterInterface presenterInterface;
+
+    int FACEID = 1;
 
     private ImageView SettingBack;
     private SimpleDraweeView SettingSim;
@@ -103,7 +104,63 @@ public class SettingActivity extends BaseActivity implements Contract.ObjectView
 
     @Override
     public void initData() {
+
         presenterInterface.getStringPresenter();
+
+        SettingOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StaticClass.userId = 0;
+                StaticClass.sessionId = null;
+                Intent intent = new Intent(SettingActivity.this,MainActivity.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
+                } else {
+                    startActivity(intent);
+                }
+            }
+        });
+
+        /*SettingQianming.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this,SIgnatureActivity.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
+                } else {
+                    startActivity(intent);
+                }
+            }
+        });*/
+
+        SettingBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this,MainActivity.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
+                } else {
+                    startActivity(intent);
+                }
+            }
+        });
+
+        SettingFaceID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (FACEID == 1){
+                    Toast.makeText(SettingActivity.this,"已绑定FaceID!",Toast.LENGTH_SHORT).show();
+                }else{
+                 /*   Intent intent = new Intent(SettingActivity.this, PreviewActivity.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
+                    } else {
+                        startActivity(intent);
+                    }*/
+                }
+            }
+        });
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -127,7 +184,7 @@ public class SettingActivity extends BaseActivity implements Contract.ObjectView
         SettingPhone.setText(userMessage.getResult().getPhone());
         SettingEmail.setText(userMessage.getResult().getEmail());
         SettingJifen.setText(userMessage.getResult().getIntegral()+"");
-        Log.e("tag",userMessage.getResult().getWhetherVip()+"");
+        //Log.e("tag",userMessage.getResult().getWhetherVip()+"");
         if (userMessage.getResult().getWhetherVip() == 1){
             SettingVIP.setText("是");
         }else{
@@ -135,8 +192,10 @@ public class SettingActivity extends BaseActivity implements Contract.ObjectView
         }
         if (userMessage.getResult().getWhetherFaceId() == 1){
             SettingFaceID.setText("已绑定");
+            FACEID = 1;
         }else{
-            SettingFaceID.setText("未绑定");
+            SettingFaceID.setText("点击绑定");
+            FACEID = 2;
         }
     }
 

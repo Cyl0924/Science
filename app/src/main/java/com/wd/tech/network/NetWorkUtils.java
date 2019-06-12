@@ -100,11 +100,16 @@ public class NetWorkUtils {
 
         if (networkInfo != null && networkInfo.isConnected()) {
 
-            if (networkInfo.getType() == (ConnectivityManager.TYPE_WIFI)) {
-                return NETWORK_WIFI;
-            } else if (networkInfo.getType() == (ConnectivityManager.TYPE_MOBILE)) {
-                return NETWORK_MOBILE;
+                try {
+                    if (networkInfo.getType() == (ConnectivityManager.TYPE_WIFI)) {
+                        return NETWORK_WIFI;
+                    } else if (networkInfo.getType() == (ConnectivityManager.TYPE_MOBILE)) {
+                        return NETWORK_MOBILE;
+                    }
+                } catch (Exception e){
+
             }
+
         } else {
             return NETWORK_NONE;
         }

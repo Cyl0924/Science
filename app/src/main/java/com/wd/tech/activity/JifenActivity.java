@@ -7,16 +7,27 @@ import android.support.annotation.RequiresApi;
 import android.transition.Fade;
 import android.transition.Transition;
 import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.tech.R;
 import com.wd.tech.app.StaticClass;
 import com.wd.tech.base.BaseActivity;
+import com.wd.tech.bean.JifenBean;
+import com.wd.tech.bean.JifenBeanMingXi;
+import com.wd.tech.contract.Contract;
 import com.wd.tech.network.NetWorkUtils;
+import com.wd.tech.presenter.Presenter;
 
-public class JifenActivity extends BaseActivity {
+import java.util.HashMap;
 
+public class JifenActivity extends BaseActivity implements Contract.UserJifenView ,Contract.UsrtJifenMingXi{
 
+    Contract.PresenterInterface presenterInterface;
+
+    private TextView JiFenSum;
+    private TextView JiFenDay;
+    private XRecyclerView JifenRec;
 
     @Override
     public void onNetChanged(int netWorkState) {
@@ -58,12 +69,20 @@ public class JifenActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        presenterInterface = new Presenter<>(this);
+        JiFenSum =  findViewById(R.id.JiFenSum);
+        JiFenDay =  findViewById(R.id.JiFenDay);
+        JifenRec =  findViewById(R.id.JifenRec);
 
     }
 
     @Override
     public void initData() {
-
+        presenterInterface.getStringUrl(StaticClass.UserJIFEN);
+        HashMap<String,Object> hashMap = new HashMap<>();
+        hashMap.put("page",1);
+        hashMap.put("count",10);
+        presenterInterface.getStringUrls(StaticClass.UserJIFENMINGXI,hashMap);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -71,6 +90,22 @@ public class JifenActivity extends BaseActivity {
         Transition transition = new Fade().setDuration(200);
         getWindow().setEnterTransition(transition);
         getWindow().setExitTransition(transition);
+    }
+
+    @Override
+    public void returnUserJifen(JifenBean jifenBean) {
+        if (jifenBean.getResult().getAmount() == 0){
+            JiFenSum.setText("您还没有积分,快去做任务吧!");
+            JiFenSum.setTextSize(20);
+        }else{
+            JiFenSum.setText(jifenBean.getResult().getAmount()+"");
+        }
+    }
+
+
+    @Override
+    public void returnMingXi(JifenBeanMingXi jifenBeanMingXi) {
+
     }
 
 }

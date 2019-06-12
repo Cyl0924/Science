@@ -96,7 +96,7 @@ public class Model implements Contract.ModelInterface {
             public void onNext(ResponseBody responseBody) {
                 try {
                     String json = responseBody.string();
-                    Log.e("tag",json);
+                    //Log.e("tag",json);
                     objectCall.returnObject(json);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -202,6 +202,33 @@ public class Model implements Contract.ModelInterface {
                 try {
                     String json = responseBody.string();
                     objectCall.returnObject(json);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getStringUrl(String url, HashMap<String,Object> hashMap, final ObjectBack objectBack) {
+        this.back = objectBack;
+        RetrofitUtil.getUtil().doGetStringMap(url,hashMap, new Observer<ResponseBody>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+               // Log.e("tag",e.getMessage());
+            }
+
+            @Override
+            public void onNext(ResponseBody responseBody) {
+                try {
+                    String json = responseBody.string();
+                    //Log.e("tag",json+"++++++++++++++++++++++++");
+                    objectBack.returnBack(json);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

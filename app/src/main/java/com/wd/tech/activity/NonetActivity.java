@@ -8,6 +8,7 @@ import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.Transition;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -21,7 +22,7 @@ public class NonetActivity extends BaseActivity {
 
     private Button yinbtn;
     private Intent intent;
-
+    private long exitTime = 0;
     @Override
     public void onNetChanged(int netWorkState) {
         switch (netWorkState) {
@@ -39,6 +40,31 @@ public class NonetActivity extends BaseActivity {
                 //WiFi网络
                 JumpMain();
                 break;
+        }
+    }
+
+    /*
+     *监听返回键点击事件
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        //触发一次返回键 关闭侧滑
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /*
+     *实现连续2秒内连续点击两次按钮退出当前APP
+     */
+    public void exit() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(NonetActivity.this, "再按一次退出程序",Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            System.exit(0);
         }
     }
 
@@ -76,6 +102,12 @@ public class NonetActivity extends BaseActivity {
                 break;
             case 11:
                 intent = new Intent(NonetActivity.this,SettingActivity.class);
+                break;
+            case 12:
+                //intent = new Intent(NonetActivity.this,SIgnatureActivity.class);
+                break;
+            case 13:
+                intent = new Intent(NonetActivity.this,FaceActivity.class);
                 break;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

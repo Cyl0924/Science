@@ -216,8 +216,8 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
     @Override
     protected void onStop() {
         super.onStop();
-        animator.cancel();
-        rlContent.getBackground().setAlpha(0);
+        //animator.cancel();
+        //rlContent.getBackground().setAlpha(0);
         ToLoginBtn.regainBackground();
     }
 

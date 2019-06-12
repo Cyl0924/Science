@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.wd.tech.app.StaticClass;
+import com.wd.tech.bean.JifenBean;
+import com.wd.tech.bean.JifenBeanMingXi;
 import com.wd.tech.bean.LoginBean;
 import com.wd.tech.bean.MessageBean;
 import com.wd.tech.bean.UserMessage;
@@ -66,6 +68,45 @@ public class Presenter<T> implements Contract.PresenterInterface {
                 UserMessage userMessage = gson.fromJson(object.toString(),UserMessage.class);
                 Contract.ObjectView objectView = (Contract.ObjectView) tt;
                 objectView.returnObject(userMessage);
+            }
+        });
+    }
+
+    @Override
+    public void putString(HashMap<String, Object> hashMap) {
+        model.PutModel(StaticClass.SINGATURE, hashMap, new Model.ObjectCall() {
+            @Override
+            public void returnObject(Object object) {
+                gson = new Gson();
+                MessageBean messageBean = gson.fromJson(object.toString(),MessageBean.class);
+                Contract.SignaView signaView = (Contract.SignaView) tt;
+                signaView.returnAllMessage(messageBean);
+            }
+        });
+    }
+
+    @Override
+    public void getStringUrl(String url) {
+        model.getStringModel(url, new Model.ObjectCall() {
+            @Override
+            public void returnObject(Object object) {
+                gson = new Gson();
+                JifenBean jifenBean = gson.fromJson(object.toString(),JifenBean.class);
+                Contract.UserJifenView userJifenView = (Contract.UserJifenView) tt;
+                userJifenView.returnUserJifen(jifenBean);
+            }
+        });
+    }
+
+    @Override
+    public void getStringUrls(String url,HashMap<String,Object> hashMap) {
+        model.getStringUrl(url, hashMap ,new Model.ObjectBack() {
+            @Override
+            public void returnBack(Object object) {
+                gson = new Gson();
+                JifenBeanMingXi jifenBeanMingXi = gson.fromJson(object.toString(),JifenBeanMingXi.class);
+                Contract.UsrtJifenMingXi usrtJifenMingXi = (Contract.UsrtJifenMingXi) tt;
+                usrtJifenMingXi.returnMingXi(jifenBeanMingXi);
             }
         });
     }

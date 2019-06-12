@@ -20,7 +20,9 @@ public class StaticClass {
     public static String REGISTER = "techApi/user/v1/register";  //注册接口
     public static String LOGIN = "techApi/user/v1/login";  //登录接口
     public static String USERMESSAGE = "techApi/user/verify/v1/getUserInfoByUserId"; //根据ID查询用户所有信息
-
+    public static String SINGATURE = "techApi/user/verify/v1/modifySignature";  //修改用户签名
+    public static String UserJIFEN = "techApi/user/verify/v1/findUserIntegral"; //查询用户积分
+    public static String UserJIFENMINGXI = "techApi/user/verify/v1/findUserIntegralRecord"; //查询用户积分明细
 
 
 

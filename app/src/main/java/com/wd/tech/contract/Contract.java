@@ -1,5 +1,7 @@
 package com.wd.tech.contract;
 
+import com.wd.tech.bean.JifenBean;
+import com.wd.tech.bean.JifenBeanMingXi;
 import com.wd.tech.bean.LoginBean;
 import com.wd.tech.bean.MessageBean;
 import com.wd.tech.model.Model;
@@ -22,13 +24,16 @@ public interface Contract {
         public void GetModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void PutModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void DeleteModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
-
+        public void getStringUrl(String url, HashMap<String,Object> hashMap ,Model.ObjectBack objectBack);
     }
 
     public interface PresenterInterface{
         public void RegisterPresenter(HashMap<String,Object> hashMap);
         public void LoginPresenter(HashMap<String,Object> hashMap);
         public void getStringPresenter();
+        public void putString(HashMap<String,Object> hashMap);
+        public void getStringUrl(String url);
+        public void getStringUrls(String url , HashMap<String,Object> hashMap);
         public void Destory();
     }
 
@@ -44,6 +49,16 @@ public interface Contract {
         public void returnObject(Object obj);
     }
 
+    public interface SignaView{
+        public void returnAllMessage(Object obj);
+    }
 
+    public interface UserJifenView{
+        public void returnUserJifen(JifenBean jifenBean);
+    }
+
+    public interface UsrtJifenMingXi{
+        public void returnMingXi(JifenBeanMingXi jifenBeanMingXi);
+    }
 
 }

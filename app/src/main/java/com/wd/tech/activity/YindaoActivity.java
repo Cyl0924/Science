@@ -36,8 +36,10 @@ public class YindaoActivity extends BaseActivity {
                 StaticClass.NetState = 4;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(YindaoActivity.this).toBundle());
+                    finish();
                 } else {
                     startActivity(intent);
+                    finish();
                 }
                 break;
             case  NetWorkUtils.NETWORK_MOBILE:

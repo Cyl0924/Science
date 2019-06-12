@@ -112,4 +112,9 @@ public class RetrofitUtil {
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 
+    public void doGetStringMap(String url, HashMap<String,Object> hashMap, Observer<ResponseBody> observer){
+        Observable observable = api.doGetStringMap(url,StaticClass.userId,StaticClass.sessionId,hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    }
+
 }

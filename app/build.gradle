@@ -10,7 +10,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -56,4 +60,5 @@ dependencies {
     implementation 'org.greenrobot:greendao-generator:3.1.0'
     implementation 'com.android.support:multidex:1.0.1'
     // ***************************************************** 依赖请在后面进行添加
+
 }

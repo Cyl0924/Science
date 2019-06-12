@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.JifenActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:background="@mipmap/jifen_bg"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_192">
+
+            <TextView
+                android:id="@+id/JiFenSum"
+                android:layout_marginTop="@dimen/dp_60"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ffffff"
+                android:textSize="36sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="可用积分"
+                android:textSize="10sp"
+                android:textColor="#ffffff"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/JiFenDay"
+                android:textSize="10sp"
+                android:textColor="#ffffff"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:layout_marginBottom="@dimen/dp_30"
+            android:id="@+id/JifenRec"
+            android:background="@drawable/white_bg"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
