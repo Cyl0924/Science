@@ -1,13 +1,14 @@
 package com.wd.tech.presenter;
 
+
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.wd.tech.app.StaticClass;
+import com.wd.tech.bean.FaceBean;
 import com.wd.tech.bean.JifenBean;
 import com.wd.tech.bean.JifenBeanMingXi;
 import com.wd.tech.bean.AdvertisingBean;
-import com.wd.tech.bean.AllInfoPlateBean;
 import com.wd.tech.bean.BannerBean;
 import com.wd.tech.bean.FindByTitleBean;
 import com.wd.tech.bean.LoginBean;
@@ -179,6 +180,46 @@ public class Presenter<T> implements Contract.PresenterInterface {
                 AdvertisingBean bean = gson.fromJson(object.toString(), AdvertisingBean.class);
                 Contract.BannerView bannerView= (Contract.BannerView) tt;
                 bannerView.Advertising(bean);
+            }
+        });
+    }
+
+    @Override
+    public void putFace(HashMap<String, Object> hashMap) {
+        model.PutModel(StaticClass.BINDINGFACE, hashMap, new Model.ObjectCall() {
+            @Override
+            public void returnObject(Object object) {
+               /* gson = new Gson(); //不再被调用
+                FaceBean faceBean = gson.fromJson(object.toString(),FaceBean.class);
+                Contract.BindFace bindFace = (Contract.BindFace) tt;
+                bindFace.bindFaceId(faceBean);*/
+            }
+        });
+    }
+
+    @Override
+    public void FaceLogin(HashMap<String, Object> hashMap) {
+        model.postFace(hashMap, new Model.ObjectCall() {
+            @Override
+            public void returnObject(Object object) {
+                gson = new Gson();
+                LoginBean loginBean = gson.fromJson(object.toString(),LoginBean.class);
+                Log.e("tag","p"+""+loginBean.getMessage());
+                Contract.LoginView viewInterface = (Contract.LoginView) tt;
+                viewInterface.LoginView(loginBean);
+            }
+        });
+    }
+
+    @Override
+    public void putStringLogin() {
+        model.PutModelLogin(StaticClass.BINDINGFACE, new Model.ObjectCall() {
+            @Override
+            public void returnObject(Object object) {
+                gson = new Gson(); //不再被调用
+                FaceBean faceBean = gson.fromJson(object.toString(),FaceBean.class);
+                Contract.BindFace bindFace = (Contract.BindFace) tt;
+                bindFace.bindFaceId(faceBean);
             }
         });
     }

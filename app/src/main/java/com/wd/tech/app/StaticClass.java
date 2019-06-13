@@ -33,8 +33,8 @@ public class StaticClass {
     public  static String FindByTitle = "techApi/information/v1/findInformationByTitle";//根据标题模糊查询
     public  static String FindBySource = "techApi/information/v1/findInformationBySource";//根据作者名字模糊查询
     public  static String  Advertising="techApi/information/v1/findInfoAdvertising";//资讯广告
-
-
+    public static String BINDINGFACE = "techApi/user/verify/v1/bindingFaceId"; //绑定FaceId
+    public static String LOGINFACE = "techApi/user/v1/faceLogin"; //刷脸登录
 
 
     public static String addFriend = "techApi/chat/verify/v1/addFriend";  //添加好友

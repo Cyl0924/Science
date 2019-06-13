@@ -2,17 +2,16 @@ package com.wd.tech.activity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.transition.Fade;
 import android.transition.Transition;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.tech.R;
 import com.wd.tech.app.StaticClass;
@@ -28,6 +27,9 @@ public class SettingActivity extends BaseActivity implements Contract.ObjectView
     Contract.PresenterInterface presenterInterface;
 
     int FACEID = 1;
+
+    private SharedPreferences userSettings;
+    private SharedPreferences.Editor editor;
 
     private ImageView SettingBack;
     private SimpleDraweeView SettingSim;
@@ -84,7 +86,8 @@ public class SettingActivity extends BaseActivity implements Contract.ObjectView
     public void initView() {
 
         //Log.e("tag",StaticClass.userId+"------"+StaticClass.sessionId);
-
+        userSettings = getSharedPreferences("setting", 0);
+        editor = userSettings.edit();
         presenterInterface = new Presenter<>(this);
 
         SettingBack =  findViewById(R.id.SettingBack);
@@ -151,17 +154,19 @@ public class SettingActivity extends BaseActivity implements Contract.ObjectView
                 if (FACEID == 1){
                     Toast.makeText(SettingActivity.this,"已绑定FaceID!",Toast.LENGTH_SHORT).show();
                 }else{
-                 /*   Intent intent = new Intent(SettingActivity.this, PreviewActivity.class);
+                    Intent intent = new Intent(SettingActivity.this, LivenessActivity.class);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
                     } else {
                         startActivity(intent);
-                    }*/
+                    }
                 }
             }
         });
 
     }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void init_fade() {
@@ -192,9 +197,13 @@ public class SettingActivity extends BaseActivity implements Contract.ObjectView
         }
         if (userMessage.getResult().getWhetherFaceId() == 1){
             SettingFaceID.setText("已绑定");
+            editor.putBoolean("FaceIS",true);
+            editor.commit();
             FACEID = 1;
         }else{
             SettingFaceID.setText("点击绑定");
+            editor.putBoolean("FaceIS",false);
+            editor.commit();
             FACEID = 2;
         }
     }

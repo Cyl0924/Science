@@ -8,6 +8,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.QueryMap;
@@ -49,5 +50,8 @@ public interface Api {
     @DELETE
     @FormUrlEncoded
     public Observable<ResponseBody> doDeleteString(@Url String url,@Header("userId") int userId , @Header("sessionId") String sessionId , @FieldMap HashMap<String,Object> hashMap);
+
+    @PUT
+    public Observable<ResponseBody> doPutLogin(@Url String url,@Header("userId") int userId , @Header("sessionId") String sessionId);
 
 }

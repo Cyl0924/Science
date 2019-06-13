@@ -1,5 +1,6 @@
 package com.wd.tech.contract;
 
+import com.wd.tech.bean.FaceBean;
 import com.wd.tech.bean.JifenBean;
 import com.wd.tech.bean.JifenBeanMingXi;
 import com.wd.tech.bean.LoginBean;
@@ -26,7 +27,8 @@ public interface Contract {
         public void PutModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void DeleteModel(String url,HashMap<String,Object> hashMap, Model.ObjectCall objectCall);
         public void getStringUrl(String url, HashMap<String,Object> hashMap ,Model.ObjectBack objectBack);
-
+        public void PutModelLogin(String url,Model.ObjectCall objectCall);
+        public void postFace(HashMap<String,Object> hashMap,Model.ObjectCall objectCall);
     }
 
     public interface PresenterInterface{
@@ -43,6 +45,9 @@ public interface Contract {
         public void findInformationBySource(HashMap<String,Object> hashMap);
         //资讯广告
         public void  Advertising();
+        public void putFace(HashMap<String,Object> hashMap);
+        public void FaceLogin(HashMap<String,Object> hashMap);
+        public void putStringLogin();
         public void Destory();
     }
 
@@ -79,4 +84,9 @@ public interface Contract {
         public void findInformationByTitle(Object obj);
         public void findInformationBySource(Object obj);
     }
+
+    public interface BindFace{
+        public void bindFaceId(FaceBean faceBean);
+    }
+
 }

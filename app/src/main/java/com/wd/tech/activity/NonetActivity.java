@@ -106,9 +106,6 @@ public class NonetActivity extends BaseActivity {
             case 12:
                 //intent = new Intent(NonetActivity.this,SIgnatureActivity.class);
                 break;
-            case 13:
-                intent = new Intent(NonetActivity.this,FaceActivity.class);
-                break;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(NonetActivity.this).toBundle());

@@ -4,7 +4,9 @@ package com.wd.tech.activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -36,8 +38,11 @@ import com.wd.tech.contract.Contract;
 import com.wd.tech.network.NetWorkUtils;
 import com.wd.tech.presenter.Presenter;
 
+import java.io.File;
+
 public class MainActivity extends BaseActivity implements View.OnClickListener ,Contract.ObjectView {
 
+    public static File file;
     Contract.PresenterInterface presenterInterface;
 
     private long exitTime = 0;
@@ -65,6 +70,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private LinearLayout CeJifen;
     private LinearLayout CeTask;
     private LinearLayout CeSetting;
+    private SharedPreferences userSettings;
+    private SharedPreferences.Editor editor;
+
     @Override
     public void onNetChanged(int netWorkState) {
         switch (netWorkState) {
@@ -97,11 +105,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     public int intiLayout() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // 设置contentFeature,可使用切换动画
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        //init_explode();// 分解
-        //  init_Slide();//滑动进入
-        init_fade();//淡入淡出
-    }
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+            //init_explode();// 分解
+            //  init_Slide();//滑动进入
+            init_fade();//淡入淡出
+        }
         return R.layout.activity_main;
     }
 
@@ -120,9 +128,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
     @Override
     public void initView() {
-
         presenterInterface = new Presenter<>(this);
-
+        userSettings = getSharedPreferences("setting", 0);
+        editor = userSettings.edit();
+        editor.putBoolean("FaceIS",false);
+        editor.commit();
         /*
          * drawerLayout：获取布局页面抽屉布局的id
          * left:获取布局页面侧滑页面的id

@@ -67,7 +67,7 @@ public class InformationFragment extends Fragment  implements  Contract.BannerVi
         hashMap.put("plateId",1);
         hashMap.put("page",1);
         hashMap.put("count",5);
-        Log.e("tag",hashMap.toString());
+       // Log.e("tag",hashMap.toString());
         presenterInterface.RecommendList(hashMap);
         //资讯广告
         presenterInterface.Advertising();
@@ -121,12 +121,12 @@ public class InformationFragment extends Fragment  implements  Contract.BannerVi
     public void RecommendList(Object obj) {
         RecommendBean bean= (RecommendBean) obj;
         List<RecommendBean.ResultBean> result = bean.getResult();
-        Log.e("tag",result.size()+"");
+        //Log.e("tag",result.size()+"");
         for (int i = 0; i <result.size() ; i++) {
             if (result.get(i).getWhetherAdvertising() == 1){
-                Log.e("tag","sss");
+                //Log.e("tag","sss");
             }else {
-                Log.e("tag","ppp ");
+                //Log.e("tag","ppp ");
             }
         }
         LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());

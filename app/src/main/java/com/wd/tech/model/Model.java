@@ -121,7 +121,7 @@ public class Model implements Contract.ModelInterface {
               public void onNext(ResponseBody body) {
                   try {
                       String  json = body.string();
-                      Log.e("tag",json+"----------------------- ");
+                      //Log.e("tag",json+"----------------------- ");
                       objectCall.returnObject(json);
                   } catch (IOException e) {
                       e.printStackTrace();
@@ -193,7 +193,7 @@ public class Model implements Contract.ModelInterface {
 
             @Override
             public void onError(Throwable e) {
-
+                Log.e("tag",e.getMessage());
             }
 
             @Override
@@ -254,6 +254,59 @@ public class Model implements Contract.ModelInterface {
                     String json = responseBody.string();
                     //Log.e("tag",json+"++++++++++++++++++++++++");
                     objectBack.returnBack(json);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void PutModelLogin(String url, final ObjectCall objectCall) {
+        this.call = objectCall;
+        RetrofitUtil.getUtil().doPutStringLogin(url, new Observer<ResponseBody>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                //Log.e("tag",e.getMessage());
+            }
+
+            @Override
+            public void onNext(ResponseBody responseBody) {
+                try {
+                    String json = responseBody.string();
+                    //Log.e("tag",json);
+                    objectCall.returnObject(json);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void postFace(HashMap<String, Object> hashMap, final ObjectCall objectCall) {
+        this.call = objectCall;
+        RetrofitUtil.getUtil().doPost(StaticClass.LOGINFACE, hashMap, new Observer<ResponseBody>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                //Log.e("tag",e.getMessage());
+            }
+
+            @Override
+            public void onNext(ResponseBody responseBody) {
+                try {
+                    String json = responseBody.string();
+                    objectCall.returnObject(json);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

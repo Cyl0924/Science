@@ -3,11 +3,14 @@ package com.wd.tech.activity;
 import android.animation.Animator;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.transition.Fade;
 import android.transition.Transition;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.Window;
@@ -41,6 +44,9 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
     private ImageView ToWechatID;
     private ImageView ToFaceID;
     private RelativeLayout rlContent;
+
+    private SharedPreferences userSettings;
+    private boolean flag;
 
     @Override
     public void onNetChanged(int netWorkState) {
@@ -98,6 +104,7 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
     public void initView() {
 
         presenterInterface = new Presenter<>(this);
+        userSettings = getSharedPreferences("setting", 0);
 
         LoginTvPhone = findViewById(R.id.LoginTvPhone);
         LoginTvPwd = findViewById(R.id.LoginTvPwd);
@@ -110,6 +117,9 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
 
         //rlContent.getBackground().setAlpha(0);
         handler=new Handler();
+
+        flag = userSettings.getBoolean("FaceIS",false);
+
     }
 
     @Override
@@ -123,6 +133,23 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
                 } else {
                     startActivity(intent);
+                }
+            }
+        });
+
+        //实现人脸登录
+        ToFaceID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (flag == false){
+                    Toast.makeText(LoginActivity.this,"请先绑定人脸",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(LoginActivity.this,LivenessActivity.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
+                    } else {
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -159,8 +186,10 @@ public class LoginActivity extends BaseActivity implements Contract.LoginView{
     @Override
     public void LoginView(LoginBean loginBean) {
         if (loginBean.getMessage().equals("登录成功")){
+            Log.e("tag",loginBean.getResult().getUserId()+"*----"+ loginBean.getResult().getSessionId());
             StaticClass.userId = loginBean.getResult().getUserId();
             StaticClass.sessionId = loginBean.getResult().getSessionId();
+            //Log.e("tag",StaticClass.userId+"*--////--"+ StaticClass.sessionId);
             Toast.makeText(this,loginBean.getMessage(),Toast.LENGTH_SHORT).show();
             ToLoginBtn.startAnim();
             handler.postDelayed(new Runnable() {

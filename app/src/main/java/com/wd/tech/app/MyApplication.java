@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.arclibrary.builder.AcrFaceManagerBuilder;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.tech.database.DataBean;
 import com.wd.tech.greenDao.gen.DaoMaster;
@@ -60,7 +61,18 @@ public class MyApplication extends Application {
 
         // 图片不进行缓存 没有网络情况下 图片显示一个占位图即可
         Fresco.initialize(this);
+        initArcFace();
+    }
 
+    private void initArcFace() {
+        new AcrFaceManagerBuilder().setContext(this)
+                .setFreeSdkAppId(Constants.FREESDKAPPID)
+                .setFdSdkKey(Constants.FDSDKKEY)
+                .setFtSdkKey(Constants.FTSDKKEY)
+                .setFrSdkKey(Constants.FRSDKKEY)
+                .setLivenessAppId(Constants.LIVENESSAPPID)
+                .setLivenessSdkKey(Constants.LIVENESSSDKKEY)
+                .create();
     }
 
     /**
