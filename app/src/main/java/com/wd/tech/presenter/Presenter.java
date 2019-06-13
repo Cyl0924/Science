@@ -11,6 +11,7 @@ import com.wd.tech.bean.JifenBeanMingXi;
 import com.wd.tech.bean.AdvertisingBean;
 import com.wd.tech.bean.BannerBean;
 import com.wd.tech.bean.FindByTitleBean;
+import com.wd.tech.bean.InformationBean;
 import com.wd.tech.bean.LoginBean;
 import com.wd.tech.bean.MessageBean;
 import com.wd.tech.bean.RecommendBean;
@@ -183,6 +184,7 @@ public class Presenter<T> implements Contract.PresenterInterface {
             }
         });
     }
+<<<<<<< HEAD
 
     @Override
     public void putFace(HashMap<String, Object> hashMap) {
@@ -220,6 +222,18 @@ public class Presenter<T> implements Contract.PresenterInterface {
                 FaceBean faceBean = gson.fromJson(object.toString(),FaceBean.class);
                 Contract.BindFace bindFace = (Contract.BindFace) tt;
                 bindFace.bindFaceId(faceBean);
+=======
+    //咨询详情
+    @Override
+    public void InformationDetails(HashMap<String, Object> hashMap) {
+        model.getUserModel(StaticClass.InformationDetails, hashMap, new Model.ObjectCall() {
+            @Override
+            public void returnObject(Object object) {
+                gson=new Gson();
+                InformationBean bean = gson.fromJson(object.toString(), InformationBean.class);
+                Contract.InformationView view= (Contract.InformationView) tt;
+                view.Information(bean);
+>>>>>>> 73474f92912a5d3961e1cd8ffc8cc9400ec5c732
             }
         });
     }

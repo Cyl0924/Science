@@ -68,6 +68,14 @@
             android:launchMode="singleTask"/>
         <activity android:name=".activity.SearchActivity"
             android:launchMode="singleTask"/>
+        <activity
+            android:name=".activity.WebActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.SearchActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".activity.InformationDetailsActivity"
+            android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>

@@ -49,6 +49,8 @@ public interface Contract {
         public void FaceLogin(HashMap<String,Object> hashMap);
         public void putStringLogin();
         public void Destory();
+        //资讯详情展示
+        public void  InformationDetails(HashMap<String,Object> hashMap);
     }
 
     public interface ViewInterface{
@@ -89,4 +91,7 @@ public interface Contract {
         public void bindFaceId(FaceBean faceBean);
     }
 
+    public interface InformationView{
+        public void Information(Object obj);
+    }
 }
